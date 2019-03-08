@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a39ba0f4afeb42db906e4f615d7ba564" Name="Diagram1">
+        <EntityTypeShape EntityType="VinMartv1Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblCoUuDai" Width="1.5" PointX="7.5" PointY="5.75" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblGiaoDich" Width="1.5" PointX="7.5" PointY="8.75" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblKhachHang" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblLichSuGiaoDich" Width="1.5" PointX="9.75" PointY="6.5" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblLoaiSanPham" Width="1.5" PointX="5.25" PointY="14.375" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblNhaCungCap" Width="1.5" PointX="5.25" PointY="16.75" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblNhanVien" Width="1.5" PointX="5.25" PointY="9.875" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblQuyen" Width="1.5" PointX="0.75" PointY="7.875" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblSanPham" Width="1.5" PointX="7.5" PointY="15.25" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblSanPhamGiaoDich" Width="1.5" PointX="9.75" PointY="9.625" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblTaiKhoan" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblUuDai" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblCoUuDai_tblGiaoDich" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblCoUuDai_tblKhachHang" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblCoUuDai_tblUuDai" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblGiaoDich_tblKhachHang" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblGiaoDich_tblNhanVien" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblLichSuGiaoDich_tblGiaoDich" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblSanPhamGiaoDich_tblGiaoDich" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblKhachHang_tblTaiKhoan" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblLichSuGiaoDich_tblKhachHang" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblSanPham_tblLoaiSanPham" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblSanPham_tblNhaCungCap" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblNhanVien_tblTaiKhoan" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblTaiKhoan_tblQuyen" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblSanPhamGiaoDich_tblSanPham" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
