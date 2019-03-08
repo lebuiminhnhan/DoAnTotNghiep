@@ -109,7 +109,7 @@
                               materialDesign:HintAssist.Hint="Thanh Toán Điểm"
                               materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
                               materialDesign:HintAssist.FloatingScale="0.50"
-                              Text="999 Điểm"
+                              Text="{Binding Path=DiemTru, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0\} Điểm}"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                               FontSize="30"
                                 Width="200" Margin="5" FontWeight="Bold"/>
@@ -118,7 +118,7 @@
                               materialDesign:HintAssist.Hint="Thanh Toán Tiền"
                               materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
                               materialDesign:HintAssist.FloatingScale="0.50"
-                              Text="123456789 vnd"
+                              Text="{Binding Path=TienTra, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0\} VND}"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                               FontSize="30"
                                 Width="220" Margin="180 5 5 5" FontWeight="Bold"/>
@@ -167,7 +167,7 @@
 
 
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <ListView ItemsSource="{Binding ListGD , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Width="auto" Height="400" >
+                            <ListView ItemsSource="{Binding ListGD , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItemSP, Mode=TwoWay}" Width="auto" Height="400" >
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="Mã Giao Dịch" DisplayMemberBinding="{Binding MaGD}"></GridViewColumn>

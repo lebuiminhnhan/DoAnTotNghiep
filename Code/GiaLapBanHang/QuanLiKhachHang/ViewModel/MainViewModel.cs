@@ -18,16 +18,7 @@ namespace QuanLiKhachHang.ViewModel
         private ObservableCollection<tblSanPhamGiaoDich> _ListGD;
         public ObservableCollection<tblSanPhamGiaoDich> ListGD { get => _ListGD; set { _ListGD = value; OnPropertyChanged(); } }
 
-        private ObservableCollection<tblNhanVien> _ListNV;
-        public ObservableCollection<tblNhanVien> ListNV { get { return _ListNV; } set { _ListNV = value; OnPropertyChanged(); } }
-
-        private tblNhanVien _SNV;
-        public tblNhanVien SNV { get { return _SNV; } set { _SNV = value; OnPropertyChanged(); } }
-
-        private ObservableCollection<tblKhachHang> _ListKH;
-        public ObservableCollection<tblKhachHang> ListKH { get => _ListKH; set { _ListKH = value; OnPropertyChanged(); } }
-
-
+     
         private ListKHnew _SelectedItem;
         public ListKHnew SelectedItem
         {
@@ -70,9 +61,7 @@ namespace QuanLiKhachHang.ViewModel
 
                     SoLuong = SelectedItemSP.SoLuong;
 
-                    TienThanhToan = DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(y => y.MaGD == SelectedItemSP.MaGD).Sum(x => x.TongTien);
 
-                    ListGD = new ObservableCollection<tblSanPhamGiaoDich>(DataProvider.Ins.DB.tblSanPhamGiaoDich.OrderByDescending(x => x.MaGD).Where(y => y.MaGD == SelectedItem.MaGD));
 
                 }
             }
@@ -133,7 +122,22 @@ namespace QuanLiKhachHang.ViewModel
         public ICommand DeleteCommandSP { get; set; }
 
 
-      
+        public void LoadDL()
+        {
+            var query = from g in DataProvider.Ins.DB.tblGiaoDich
+                        where g.TrangThai != "Đã Xóa"
+                        select new ListKHnew
+                        {
+                            MaGD = g.MaGD,
+                            TenKH = g.tblKhachHang.HoTen,
+                            TenNV = g.tblNhanVien.HoTen,
+                            NgayGiaoDich = g.NgayGiaoDich
+                        };
+
+
+            List = new ObservableCollection<ListKHnew>(query);
+            
+        }
 
 
         public MainViewModel()
@@ -183,15 +187,16 @@ namespace QuanLiKhachHang.ViewModel
                 sp.MaSP = MaSP;
                 sp.SoLuong = SoLuong;
                 DonGia = DataProvider.Ins.DB.tblSanPham.Where(x => x.MaSP == sp.MaSP).Select(y => y.DonGia).FirstOrDefault();
-
+                //Application.Current.Properties["MaGD"] = MaGD;
                 sp.TongTien = sp.SoLuong * DonGia;
                 DataProvider.Ins.DB.tblSanPhamGiaoDich.Add(sp);
 
-
-
                 DataProvider.Ins.DB.SaveChanges();
-                //TienThanhToan = DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(y => y.MaGD == SelectedItem.MaGD).Sum(x => x.TongTien);
-
+                TienThanhToan = DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(y => y.MaGD == MaGD).Sum(x => x.TongTien);
+              ListGD = new ObservableCollection<tblSanPhamGiaoDich>(DataProvider.Ins.DB.tblSanPhamGiaoDich.OrderByDescending(x => x.MaGD).Where(y => y.MaGD == MaGD));
+                var gd = DataProvider.Ins.DB.tblGiaoDich.Where(y => y.MaGD == MaGD).FirstOrDefault();
+                gd.TienThanhToan = TienThanhToan;
+                DataProvider.Ins.DB.SaveChanges();
                 LoadDL();
                 MessageBox.Show("Thêm sản phẩm vào giao dịch thành công!");
             });
@@ -274,10 +279,12 @@ namespace QuanLiKhachHang.ViewModel
 
             }, (p) =>
             {
-                var sp = DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(x => x.MaGD == SelectedItemSP.MaGD).SingleOrDefault();
-                sp.MaGD = SelectedItem.MaGD;
+                var sp = DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(x => x.MaSP == SelectedItemSP.MaSP).FirstOrDefault();
+                sp.MaGD = SelectedItemSP.MaGD;
                 sp.MaSP = MaSP;
                 sp.SoLuong = SoLuong;
+                DonGia = DataProvider.Ins.DB.tblSanPham.Where(x => x.MaSP == sp.MaSP).Select(y => y.DonGia).FirstOrDefault();
+                sp.TongTien = sp.SoLuong * DonGia;
 
 
                 DataProvider.Ins.DB.SaveChanges();
@@ -285,17 +292,53 @@ namespace QuanLiKhachHang.ViewModel
                 SelectedItemSP.MaSP = MaSP;
                 SelectedItemSP.SoLuong = SoLuong;
 
+
+                TienThanhToan = DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(y => y.MaGD == MaGD).Sum(x => x.TongTien);
+                var gd = DataProvider.Ins.DB.tblGiaoDich.Where(y => y.MaGD == MaGD).FirstOrDefault();
+                gd.TienThanhToan = TienThanhToan;
+                DataProvider.Ins.DB.SaveChanges();
+
+
+                ListGD = new ObservableCollection<tblSanPhamGiaoDich>(DataProvider.Ins.DB.tblSanPhamGiaoDich.OrderByDescending(x => x.MaGD).Where(y => y.MaGD == MaGDSP));
+
                 LoadDL();
                 MessageBox.Show("Sửa sản phẩm vào giao dịch thành công!");
-                SelectedItem = null;
-                MaGD = 0;
                 MaSP = 0;
                 SoLuong = 0;
             });
 
-            
+        DeleteCommandSP = new RelayCommand<object>((p) =>
+            {
+                if (SelectedItemSP == null)
+                    return false;
 
-            DeleteCommand = new RelayCommand<object>((p) =>
+                var displayList = DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(x => x.MaGD == MaGD);
+                if (displayList == null || displayList.Count() != 0)
+                    return true;
+
+                return false;
+
+            }, (p) =>
+            {
+                var giaodich = DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(x => x.MaSP == SelectedItemSP.MaSP).FirstOrDefault();
+                DataProvider.Ins.DB.tblSanPhamGiaoDich.Remove(giaodich);
+
+                DataProvider.Ins.DB.SaveChanges();
+                SelectedItemSP.MaGD = MaGDSP;
+                SelectedItemSP.MaSP = MaSP;
+                SelectedItemSP.SoLuong = SoLuong;
+
+                LoadDL();
+                ListGD = new ObservableCollection<tblSanPhamGiaoDich>(DataProvider.Ins.DB.tblSanPhamGiaoDich.OrderByDescending(x => x.MaGD).Where(y => y.MaGD == MaGDSP));
+
+                MessageBox.Show("Bỏ sản phẩm thành công!");
+                MaSP = 0;
+                SoLuong = 0;
+                
+            });
+        
+
+        DeleteCommand = new RelayCommand<object>((p) =>
             {
                 if (SelectedItem == null)
                     return false;
@@ -333,23 +376,7 @@ namespace QuanLiKhachHang.ViewModel
                 NgayGiaoDich = DateTime.Now;
             });
         }
-        public void LoadDL()
-        {
-            var query = from g in DataProvider.Ins.DB.tblGiaoDich
-                        where g.TrangThai != "Đã Xóa"
-                        select new ListKHnew
-                        {
-                            MaGD = g.MaGD,
-                            TenKH = g.tblKhachHang.HoTen,
-                            TenNV = g.tblNhanVien.HoTen,
-                            NgayGiaoDich = g.NgayGiaoDich
-                        };
-
-
-            List = new ObservableCollection<ListKHnew>(query);
-            ListNV = new ObservableCollection<tblNhanVien>(DataProvider.Ins.DB.tblNhanVien.OrderByDescending(x => x.MaNV));
-           
-        }
+  
 
         public bool sn(DateTime n1, DateTime n2)
         {
