@@ -25,7 +25,7 @@
             <Setter Property="Foreground" Value="Gray"></Setter>
         </Style>
     </Window.Resources>
-  
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWindow}"/>
@@ -60,8 +60,8 @@
                     <Grid>
 
                         <WrapPanel Margin="0 0 0 10">
-                            <TextBox Text="{Binding MaKH, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mã Khách Hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput"  />
-                            <DatePicker IsEnabled="False" VerticalAlignment="Center" SelectedDate="{Binding NgayGiaoDich, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Ngày Giao Dịch" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                            <TextBox Text="{Binding MaKH, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mã Khách Hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput" FontSize="24" Width="240"  />
+                            <DatePicker IsEnabled="False" VerticalAlignment="Center" SelectedDate="{Binding NgayGiaoDich, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="340" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Ngày Giao Dịch" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" FontSize="24"  />
 
 
                         </WrapPanel>
@@ -84,12 +84,12 @@
                     <Grid >
 
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <ListView ItemsSource="{Binding List , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Width="auto" Height="400">
+                            <ListView ItemsSource="{Binding List , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Width="auto" Height="300">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="Mã Giao Dịch" DisplayMemberBinding="{Binding MaGD}"></GridViewColumn>
-                                        <GridViewColumn Header="Khách Hàng" DisplayMemberBinding="{Binding TenKH}"></GridViewColumn>
-                                        <GridViewColumn Header="Nhân Viên" DisplayMemberBinding="{Binding TenNV}"></GridViewColumn>
+                                        <GridViewColumn Header="Khách Hàng" DisplayMemberBinding="{Binding MaKH}"></GridViewColumn>
+                                        <GridViewColumn Header="Nhân Viên" DisplayMemberBinding="{Binding MaNVGD}"></GridViewColumn>
                                         <GridViewColumn Header="Ngày Giao Dịch" DisplayMemberBinding="{Binding NgayGiaoDich}"></GridViewColumn>
 
                                     </GridView>
@@ -105,25 +105,36 @@
                     <StackPanel>
                         <Label Content="PHƯƠNG THỨC THANH TOÁN" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Foreground="#DDF7F5F5" Background="#FFC50808"></Label>
                         <WrapPanel Margin="5">
-                            <TextBox
-                              materialDesign:HintAssist.Hint="Thanh Toán Điểm"
-                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
-                              materialDesign:HintAssist.FloatingScale="0.50"
-                              Text="{Binding Path=DiemTru, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0\} Điểm}"
-                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                              FontSize="30"
-                                Width="200" Margin="5" FontWeight="Bold"/>
+                            <TextBox Text="{Binding DiemTru, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Trừ Điểm" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput" FontSize="24" FontWeight="Bold" Width="200" />
 
-                            <TextBox
-                              materialDesign:HintAssist.Hint="Thanh Toán Tiền"
-                              materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
-                              materialDesign:HintAssist.FloatingScale="0.50"
-                              Text="{Binding Path=TienTra, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0\} VND}"
-                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                              FontSize="30"
-                                Width="220" Margin="180 5 5 5" FontWeight="Bold"/>
+                            <TextBox Text="{Binding TienTra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="180 5 15 5" materialDesign:HintAssist.Hint="Trả Tiền" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput" FontSize="24" FontWeight="Bold" Width="200" />
                         </WrapPanel>
-                        
+
+                    </StackPanel>
+                </materialDesign:Card>
+                <materialDesign:Card Grid.Row="4" Margin="5" Height="100">
+                    <StackPanel>
+                        <Label Content="TRA CỨU ĐIỂM KHÁCH HÀNG" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Foreground="#DDF7F5F5" Background="#FFC50808"></Label>
+                        <WrapPanel Margin="20" VerticalAlignment="Stretch">
+                            <TextBox
+                        Text="{Binding MaKH, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        Margin="5"
+  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="462" FontSize="20"
+  >
+                                <materialDesign:HintAssist.Hint>
+                                    <StackPanel
+      Orientation="Horizontal"
+      Margin="-2 0 0 0">
+                                        <materialDesign:PackIcon
+        Kind="Search" />
+                                        <TextBlock><Run Text="Mã khách hàng"/></TextBlock>
+                                    </StackPanel>
+                                </materialDesign:HintAssist.Hint>
+                            </TextBox>
+                            <Button Command="{Binding Scommand}" IsDefault="True" Content="Tìm" Margin="5" Width="100"></Button>
+
+                        </WrapPanel>
+
                     </StackPanel>
                 </materialDesign:Card>
 
@@ -134,16 +145,17 @@
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <!--các element binding từ selected item-->
                 <materialDesign:Card Grid.Row="0" Margin="5">
                     <Grid>
-                        
+
                         <WrapPanel Margin="0 0 0 10">
-                            <TextBox Text="{Binding MaGD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mã Giao Dịch" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput"  />
-                            <TextBox Text="{Binding MaSP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mã Sản Phẩm" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput"  />
-                            <TextBox Text="{Binding SoLuong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số Lượng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput"  />
+                            <TextBox Text="{Binding MaGD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mã Giao Dịch" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput" FontSize="24" Width="189"  />
+                            <TextBox Text="{Binding MaSP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mã Sản Phẩm" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput" FontSize="24" Width="190"  />
+                            <TextBox Text="{Binding SoLuong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số Lượng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput" FontSize="24" Width="189"  />
 
 
 
@@ -167,7 +179,7 @@
 
 
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <ListView ItemsSource="{Binding ListGD , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItemSP, Mode=TwoWay}" Width="auto" Height="400" >
+                            <ListView ItemsSource="{Binding ListGD , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItemSP, Mode=TwoWay}" Width="auto" Height="300" >
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="Mã Giao Dịch" DisplayMemberBinding="{Binding MaGD}"></GridViewColumn>
@@ -182,7 +194,7 @@
 
 
                 </materialDesign:Card>
-                
+
                 <materialDesign:Card Grid.Row="3" Margin="5" Height="100">
                     <StackPanel>
                         <Label Content="TỔNG TIỀN THANH TOÁN" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Foreground="#DDF7F5F5" Background="#FFC50808"></Label>
@@ -191,11 +203,39 @@
                             <Label Margin="5" FontSize="30" Content="{Binding TienThanhToan, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Width="190" FontFamily="Arial Black"></Label>
                             <Label Margin="5 10 " FontSize="24" Content="VND" FontWeight="Bold" Width="80" FontFamily="Bodoni MT Black"></Label>
 
-                            <Button Command="{Binding AddCommand}" Content="Xuất Hóa Đơn" Margin="130 5 5 5" Width="200" Height="50" Background="#FFB73A3A" FontSize="24"/>
+                            <Button Command="{Binding ReportCommand}" Content="Xuất Hóa Đơn" Margin="130 5 5 5" Width="200" Height="50" Background="#FFB73A3A" FontSize="24"/>
 
                         </WrapPanel>
                     </StackPanel>
-                    
+
+                </materialDesign:Card>
+                <materialDesign:Card Grid.Row="4" Margin="5" Height="100">
+                    <StackPanel>
+                        <materialDesign:Chip
+                                 Content="{Binding Path=HoTen, Mode=OneWay}"
+                                Width="615"
+                                Margin="5,5,0,5"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                            <materialDesign:Chip.Icon>
+                                <materialDesign:PackIcon
+                                         Kind="User"></materialDesign:PackIcon>
+                            </materialDesign:Chip.Icon>
+                        </materialDesign:Chip>
+
+                        <materialDesign:Chip
+                                Margin="5,5,0,5"
+                                  Content="{Binding Path=DiemTichLuy, Mode=OneWay,StringFormat=\{0\} điểm}"
+                                Width="615"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                            <materialDesign:Chip.Icon>
+                                <materialDesign:PackIcon
+                                         Kind="Contrast"></materialDesign:PackIcon>
+                            </materialDesign:Chip.Icon>
+                        </materialDesign:Chip>
+                    </StackPanel>
+
                 </materialDesign:Card>
 
             </Grid>
