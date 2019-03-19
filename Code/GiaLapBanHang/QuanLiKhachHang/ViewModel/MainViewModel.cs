@@ -117,6 +117,8 @@ namespace QuanLiKhachHang.ViewModel
         private int? _DonGia;
         public int? DonGia { get => _DonGia; set { _DonGia = value; OnPropertyChanged(); } }
 
+        private int? _DiemTichHD;
+        public int? DiemTichHD { get => _DiemTichHD; set { _DiemTichHD = value; OnPropertyChanged(); } }
 
         public ICommand LoadedWindowCommand { get; set; }
         public bool Isloaded = false;
@@ -405,12 +407,24 @@ namespace QuanLiKhachHang.ViewModel
             }, (p) =>
             {
                 // tích điểm cho khách hàng
-                int? DiemTichHD = (TienThanhToan * 3) / 100000;
-                if(DiemTichHD < 1)
-                {
-                    DiemTichHD = 1;
-                }
+                 
                 var kh = DataProvider.Ins.DB.tblKhachHang.Where(x => x.MaKH == MaKH).FirstOrDefault();
+                if(kh.LoaiKhachHang == "VIP")
+                {
+                    DiemTichHD = (TienThanhToan * 10) / 100000;
+                    if (DiemTichHD < 1)
+                    {
+                        DiemTichHD = 1;
+                    }
+                }
+                else
+                {
+                  DiemTichHD = (TienThanhToan * 3) / 100000;
+                    if (DiemTichHD < 1)
+                    {
+                        DiemTichHD = 1;
+                    }
+                }
                 kh.DiemTichLuy = kh.DiemTichLuy + DiemTichHD;
                 int? Diemphaitru = (kh.DiemHienCo-DiemTru) * 1000;
                     kh.DiemHienCo = kh.DiemHienCo - DiemTru + DiemTichHD;
@@ -455,13 +469,12 @@ namespace QuanLiKhachHang.ViewModel
                 ws.Range["A1"].Value = "MaKH: ";
                 
                 ws.Range["C1"].Value = "MaNV: ";
-               
+                ws.Range["A10"].Value = "Tien Chu: ";
                 ws.Range["A9"].Value = "Diem Tich Luy: ";
                 ws.Range["A5"].Value = "Diem Tru: ";
                 ws.Range["A6"].Value = "Tien Nhan Vao: ";
                 ws.Range["A7"].Value = "Tien Tra Lai: ";
                 ws.Range["A8"].Value = "Tien Thanh Toan: ";
-                ws.Range["B10"].Value = "San Pham Mua: ";
                 ws.Range["A4"].Value = "Ngay Giao Dich: ";
                 ws.Range["A11"].Value = "MaSP: ";
                 ws.Range["B11"].Value = "TenSP: ";
@@ -481,11 +494,10 @@ namespace QuanLiKhachHang.ViewModel
                 ws.Range["B7"].Value = q.TienGiam;
                 ws.Range["B8"].Value = q.TienThanhToan;
                 ws.Range["B9"].Value = q.DiemTich;
-
-
+                ws.Range["B10"].Value = ToText(q.TienThanhToan.ToString()) + " đồng" ;
 
                 int i = 12;
-                var listsp = from a in DataProvider.Ins.DB.tblSanPhamGiaoDich
+                var listsp = (from a in DataProvider.Ins.DB.tblSanPhamGiaoDich
                              where a.MaGD == MaGD
                              select new SPnew
                              {
@@ -495,9 +507,9 @@ namespace QuanLiKhachHang.ViewModel
                                  TongTien = a.TongTien,
                                  DonGia = a.tblSanPham.DonGia
 
-                             };
+                             }).ToList();
 
-                foreach (var item in listsp.ToList())
+                foreach (var item in listsp)
                 {
                     ws.Range["A" + i].Value = item.MaSP;
                     ws.Range["B" + i].Value = item.TenSP;
@@ -507,11 +519,7 @@ namespace QuanLiKhachHang.ViewModel
 
 
                     i++;
-                    if (i > DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(x => x.MaGD != MaGD).Count())
-                    {
-                        break;
-                    }
-
+                  
                 }
                 Random r = new Random();
                 int so = r.Next(9999);
@@ -536,7 +544,7 @@ namespace QuanLiKhachHang.ViewModel
                     foreach (var i in KhachHangList)
                     {
                         HoTen = i.HoTen;
-                        DiemTichLuy = i.DiemTichLuy;
+                        DiemTichLuy = i.DiemHienCo;
 
                     }
                     
@@ -554,6 +562,7 @@ namespace QuanLiKhachHang.ViewModel
         public Microsoft.Office.Interop.Excel.Workbook WB = null;
         public Microsoft.Office.Interop.Excel.Worksheet WS = null;
         public Microsoft.Office.Interop.Excel.Range Range = null;
+       
 
         void PrintMyExcelFile(string link)
         {
@@ -587,7 +596,30 @@ namespace QuanLiKhachHang.ViewModel
             excelApp.Quit();
             Marshal.FinalReleaseComObject(excelApp);
         }
-
+        public string ToText(string str)
+        {
+            string[] word = { "", " một", " hai", " ba", " bốn", " năm", " sáu", " bẩy", " tám", " chín" };
+            string[] million = { "", " mươi", " trăm", "" };
+            string[] billion = { "", "", "", " nghìn", "", "", " triệu", "", "" };
+            string result = "{0}";
+            int count = 0;
+            for (int i = str.Length - 1; i >= 0; i--)
+            {
+                if (count > 0 && count % 9 == 0)
+                    result = string.Format(result, "{0} tỷ");
+                if (!(count < str.Length - 3 && count > 2 && str[i].Equals('0') && str[i - 1].Equals('0') && str[i - 2].Equals('0')))
+                    result = string.Format(result, "{0}" + billion[count % 9]);
+                if (!str[i].Equals('0'))
+                    result = string.Format(result, "{0}" + million[count % 3]);
+                else if (count % 3 == 1 && count > 1 && !str[i - 1].Equals('0') && !str[i + 1].Equals('0'))
+                    result = string.Format(result, "{0} lẻ");
+                var num = Convert.ToInt16(str[i].ToString());
+                result = string.Format(result, "{0}" + word[num]);
+                count++;
+            }
+            result = result.Replace("{0}", "");
+            return result.Trim();
+        }
         public bool sn(DateTime n1, DateTime n2)
         {
             if (n1.Day == n2.Day && n1.Month == n2.Month)

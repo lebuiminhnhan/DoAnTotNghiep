@@ -1,0 +1,236 @@
+﻿<Window x:Class="QuanLiKhachHang.SearchWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLiKhachHang"
+        mc:Ignorable="d"
+       
+         xmlns:uc="clr-namespace:QuanLiKhachHang.MyUserControl"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        x:Name="SWD"
+         DataContext="{StaticResource SVM}"
+        Title="Khách hàng" Height="500" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:UserControlBar Tag="{Binding Title, ElementName=SWD}"></uc:UserControlBar>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--các element binding từ selected item-->
+            <materialDesign:Card Grid.Row="0" Margin="5">
+                <WrapPanel Margin="20" VerticalAlignment="Stretch">
+                    <TextBox
+                        Text="{Binding Key, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        Margin="10"
+  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="360"
+  >
+                        <materialDesign:HintAssist.Hint>
+                            <StackPanel
+      Orientation="Horizontal"
+      Margin="-2 0 0 0">
+                                <materialDesign:PackIcon
+        Kind="Search" />
+                                <TextBlock><Run Text="Tìm kiếm khách hàng"/></TextBlock>
+                            </StackPanel>
+                        </materialDesign:HintAssist.Hint>
+                    </TextBox>
+                    <Button Command="{Binding Scommand}" IsDefault="True" Content="Tìm" Margin="5" Width="100"></Button>
+
+                </WrapPanel>
+            </materialDesign:Card>
+
+
+            <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <GroupBox
+  Header="Thông tin khách hàng"
+  Style="{DynamicResource MaterialDesignGroupBox}"
+  Margin="16"
+  materialDesign:ShadowAssist.ShadowDepth="Depth3"
+  BorderThickness="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <StackPanel >
+                                    <materialDesign:Chip
+                                 Content="{Binding Path=HoTen, Mode=OneWay}"
+                                Width="500"
+                                Margin="5"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <materialDesign:Chip.Icon>
+                                            <materialDesign:PackIcon
+                                         Kind="User"></materialDesign:PackIcon>
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+                                    <materialDesign:Chip
+                                Margin="5"
+                                  Content="{Binding Path=MaKH, Mode=OneWay}"
+                                Width="500"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <materialDesign:Chip.Icon>
+                                            <materialDesign:PackIcon
+                                         Kind="IdentificationCard"></materialDesign:PackIcon>
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+                                    <materialDesign:Chip
+                                 Content="{Binding Path=NamSinh, Mode=OneWay}"
+                                Width="500"
+                                Margin="5"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <materialDesign:Chip.Icon>
+                                            <materialDesign:PackIcon
+                                         Kind="DateRange"></materialDesign:PackIcon>
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+                                    <materialDesign:Chip
+                                Margin="5"
+                                  Content="{Binding Path=DiaChi, Mode=OneWay}"
+                                Width="500"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <materialDesign:Chip.Icon>
+                                            <materialDesign:PackIcon
+                                         Kind="AddressMarker"></materialDesign:PackIcon>
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+                                    <materialDesign:Chip
+                                 Content="{Binding Path=SDT, Mode=OneWay}"
+                                Width="500"
+                                Margin="5"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <materialDesign:Chip.Icon>
+                                            <materialDesign:PackIcon
+                                         Kind="Phone"></materialDesign:PackIcon>
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+                                    <materialDesign:Chip
+                                Margin="5"
+                                  Content="{Binding Path=DiemTichLuy, Mode=OneWay,StringFormat=\{0\} điểm}"
+                                Width="500"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <materialDesign:Chip.Icon>
+                                            <materialDesign:PackIcon
+                                         Kind="Contrast"></materialDesign:PackIcon>
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+
+                                    <materialDesign:Chip
+                                 Content="{Binding Path=LoaiKH, Mode=OneWay}"
+                                Width="500"
+                                Margin="5"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <materialDesign:Chip.Icon>
+                                            <materialDesign:PackIcon
+                                         Kind="Crown"></materialDesign:PackIcon>
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+                                    <materialDesign:Chip
+                                Margin="5"
+                                  Content="{Binding Path=DiemLuu, Mode=OneWay}"
+                                Width="500"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <materialDesign:Chip.Icon>
+                                            <materialDesign:PackIcon
+                                         Kind="CurrencyUsd"></materialDesign:PackIcon>
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+
+
+
+
+                                </StackPanel>
+
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <StackPanel >
+                                    <Label Content="Lịch Sử Giao Dịch" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Foreground="#DDF7F5F5" Background="#FFC50808"></Label>
+
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                        <ListView ItemsSource="{Binding List , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Width="907">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridViewColumn Header="Mã Giao Dịch" DisplayMemberBinding="{Binding MaGD}"></GridViewColumn>
+                                                    <GridViewColumn Header="Nhân Viên" DisplayMemberBinding="{Binding TenNV}"></GridViewColumn>
+                                                    <GridViewColumn Header="Tiền Thanh Toán" DisplayMemberBinding="{Binding TienThanhToan}"></GridViewColumn>
+                                                    <GridViewColumn Header="Điểm Tích" DisplayMemberBinding="{Binding DiemTich}"></GridViewColumn>
+                                                    <GridViewColumn Header="Điểm Trừ" DisplayMemberBinding="{Binding DiemTru}"></GridViewColumn>
+                                                    <GridViewColumn Header="Tiền Giảm" DisplayMemberBinding="{Binding TienGiam}"></GridViewColumn>
+                                                    <GridViewColumn Header="Ngày Giao Dịch" DisplayMemberBinding="{Binding NgayGiaoDich}"></GridViewColumn>
+
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                    </ScrollViewer>
+
+                                    <Label Content="Sản Phẩm Đã Mua" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Foreground="#DDF7F5F5" Background="#FFC50808"></Label>
+
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                        <ListView ItemsSource="{Binding ListGD , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Width="552">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridViewColumn Header="Mã Giao Dịch" DisplayMemberBinding="{Binding MaGDS}"></GridViewColumn>
+                                                    <GridViewColumn Header="Sản phẩm" DisplayMemberBinding="{Binding TenSPs}"></GridViewColumn>
+                                                    <GridViewColumn Header="Số Lượng" DisplayMemberBinding="{Binding SL}"></GridViewColumn>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                    </ScrollViewer>
+
+
+                                    <Label Content="Ưu Đãi Hiện Có" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Foreground="#DDF7F5F5" Background="#FFC50808"></Label>
+
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <ListView ItemsSource="{Binding ListUD , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Width="907">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridViewColumn Header="Ưu đãi" DisplayMemberBinding="{Binding TUD}"></GridViewColumn>
+                                                    
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                    </ScrollViewer>
+
+
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </Grid>
+                    </GroupBox>
+                </ScrollViewer>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</Window>
