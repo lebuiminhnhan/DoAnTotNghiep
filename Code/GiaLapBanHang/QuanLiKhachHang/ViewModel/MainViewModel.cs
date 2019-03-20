@@ -242,7 +242,6 @@ namespace QuanLiKhachHang.ViewModel
                     giaodich.NgayGiaoDich = DateTime.Now;
 
                     DataProvider.Ins.DB.tblGiaoDich.Add(giaodich);
-
                     try
                     {
                         DataProvider.Ins.DB.SaveChanges();
@@ -273,14 +272,16 @@ namespace QuanLiKhachHang.ViewModel
                     LoadDL();
                     MessageBox.Show("Thêm giao dịch thành công!");
                     SelectedItem = null;
-                    TienThanhToan = 0;
-                    MaNVGD = 0;
-                    MaGD = 0;
-                    MaKH = 0;
-                    TienTra = 0;
-                    DiemTru = 0;
-                    DiemTichLuy = 0;
-                    NgayGiaoDich = DateTime.Now;
+                    var GDtam = DataProvider.Ins.DB.tblGiaoDich.OrderByDescending(x => x.MaGD).Select(y => y.MaGD).Take(1).FirstOrDefault();
+                    MaGD = GDtam;
+                    //TienThanhToan = 0;
+                    //MaNVGD = 0;
+                    //MaGD = 0;
+                    //MaKH = 0;
+                    //TienTra = 0;
+                    //DiemTru = 0;
+                    //DiemTichLuy = 0;
+                    //NgayGiaoDich = DateTime.Now;
                 }
                
             });
