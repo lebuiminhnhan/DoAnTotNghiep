@@ -1,5 +1,7 @@
-﻿using System;
+﻿using QuanLiKhachHang.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,18 @@ namespace QuanLiKhachHang.ViewModel
 {
   public  class ControlBarViewModel : BaseViewModel
     {
+        private ObservableCollection<tblKhachHang> _KhachHangList;
+        public ObservableCollection<tblKhachHang> KhachHangList { get => _KhachHangList; set { _KhachHangList = value; OnPropertyChanged(); } }
+
+        private int _Tam;
+        public int Tam { get => _Tam; set { _Tam = value; OnPropertyChanged(); } }
+
+        private int _SLGD;
+        public int SLGD { get => _SLGD; set { _SLGD = value; OnPropertyChanged(); } }
+
+        private int? _TongThu;
+        public int? TongThu { get => _TongThu; set { _TongThu = value; OnPropertyChanged(); } }
+
         #region commands
         public ICommand CloseWindowCommand { get; set; }
         public ICommand MaximizeWindowCommand { get; set; }
@@ -28,7 +42,9 @@ namespace QuanLiKhachHang.ViewModel
                 if (w != null)
                 {
                     w.Close();
+                    LoadDL();
                 }
+                LoadDL();
             }
 
 
@@ -90,6 +106,16 @@ namespace QuanLiKhachHang.ViewModel
 
             return parent;
         }
+
+        public void LoadDL()
+        {
+
+            KhachHangList = new ObservableCollection<tblKhachHang>(DataProvider.Ins.DB.tblKhachHang.OrderByDescending(x => x.MaKH).Where(x => x.TrangThai != "Đã Xóa"));
+            SLGD = DataProvider.Ins.DB.tblGiaoDich.Count();
+            Tam = KhachHangList.Count();
+            TongThu = DataProvider.Ins.DB.tblGiaoDich.Sum(x => x.TienThanhToan);
+        }
+
 
 
     }

@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:QuanLiKhachHang"
         mc:Ignorable="d"
                       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-
+xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"  
+xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"  
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
@@ -59,7 +60,8 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
-                       
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Command="{Binding CustomerCommand}" ToolTip="Quản Lí Khách Hàng">
                         <Grid>
@@ -89,20 +91,20 @@
                             </Grid>
                         </Grid>
                     </Button>
-                    <!--<Button Grid.Column="3" ToolTip="In Mã Thẻ">
+                    <Button Grid.Column="3" ToolTip="Xuất Danh Sách Khách Hàng"  Click="Button_Click">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <TextBlock Text="In Mã Thẻ" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Text="Xuất Danh Sách" HorizontalAlignment="Center"></TextBlock>
                             </Grid>
                             <Grid Grid.Row="1">
                                 <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="Altimeter" />
                             </Grid>
                         </Grid>
-                    </Button>-->
+                    </Button>
                     <Button Grid.Column="2" ToolTip="Tìm Kiếm" Command="{Binding SearchCommand}">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -117,6 +119,21 @@
                             </Grid>
                         </Grid>
                     </Button>
+                    <Button Grid.Column="4" ToolTip="In Mã Thẻ">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="In Mã Thẻ" HorizontalAlignment="Center"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon Width="24" Height="24"  HorizontalAlignment="Center"  Kind="Altimeter" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+
                 </Grid>
             </Grid>
 
@@ -155,6 +172,9 @@
                             </Grid>
                             <Grid Grid.Row="2">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -235,6 +255,65 @@
                                         </Grid>
                                     </materialDesign:Card>
                                 </Grid>
+                                <Grid Grid.Column="3">
+                                    <materialDesign:Card Background="#03a9f4"  Margin="5"
+                                                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"  
+                                                         Padding="0" Width="200">
+                                        <Grid Height="107">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Margin="16 16 16 4"     
+                                                       Text="Tổng Doanh Thu"
+                                                       Style="{StaticResource MaterialDesignHeadlineTextBlock}" FontSize="16">
+
+                                            </TextBlock>
+                                            <Separator Grid.Row="1" Style="{StaticResource MaterialDesignLightSeparator}" />
+                                            <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" 
+                                                       HorizontalAlignment="Left"      
+                                                       Text="{Binding Path=TongThu, Mode=OneWay, StringFormat=\{0\} VND}"
+                                                       Style="{StaticResource MaterialDesignDisplay1TextBlock}" FontSize="20">
+                                            </TextBlock>
+
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </Grid>
+                                <Grid Grid.Column="4">
+                                    <materialDesign:Card Background="#03a9f4"  Margin="5"
+                                                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"  
+                                                         Padding="0" Width="200">
+                                        <Grid Height="107">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Margin="16 16 16 4"     
+                                                       Text="Tổng Doanh Thu"
+                                                       Style="{StaticResource MaterialDesignHeadlineTextBlock}" FontSize="16">
+
+                                            </TextBlock>
+                                            <Separator Grid.Row="1" Style="{StaticResource MaterialDesignLightSeparator}" />
+                                            <TextBlock Grid.Row="2" Margin="16 0 16 8" VerticalAlignment="Center" 
+                                                       HorizontalAlignment="Left"      
+                                                       Text="{Binding Path=TongThu, Mode=OneWay, StringFormat=\{0\} VND}"
+                                                       Style="{StaticResource MaterialDesignDisplay1TextBlock}" FontSize="20">
+                                            </TextBlock>
+
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </Grid>
+
+                                <Grid Grid.Column="5">
+                                    <Button Command="{Binding Refresh}" ToolTip="Nhấn nút này để refresh dữ liệu"
+  Style="{StaticResource MaterialDesignFloatingActionButton}"
+  materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+  materialDesign:ButtonProgressAssist.Value="-1"
+  materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+  Content="{materialDesign:PackIcon DotsHorizontal}" FontSize="20" Background="#FF51B73A" BorderBrush="#FF51B73A" />
+                                </Grid>
                             </Grid>
                         </Grid>
                     </materialDesign:Card>
@@ -259,88 +338,36 @@
 
                             </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Column="0" Visibility="Hidden">
-                                <ComboBox
-                                materialDesign:ComboBoxAssist.ClassicMode="{Binding GioiTinh, UpdateSourceTrigger=PropertyChanged}"
-                                Margin="5 5 15 -7"
-                                materialDesign:HintAssist.Hint="Giới tính"
-                                HorizontalAlignment="Left">
-                                    <ComboBoxItem>
-                                        Nam
-                                    </ComboBoxItem>
-                                    <ComboBoxItem>
-                                        Nữ
-                                    </ComboBoxItem>
-                                   
-
-                                </ComboBox>
-                            </Grid>
-                            <Grid Grid.Column="1" Visibility="Hidden">
-                                <ComboBox
-                                materialDesign:ComboBoxAssist.ClassicMode="{Binding LoaiKhachHang, UpdateSourceTrigger=PropertyChanged}"
-                                Margin="5 5 15 -7"
-                                materialDesign:HintAssist.Hint="Loại Khách Hàng"
-                                HorizontalAlignment="Left">
-                                    <ComboBoxItem>
-                                        Thường
-                                    </ComboBoxItem>
-                                    <ComboBoxItem>
-                                        Thân Thiết
-                                    </ComboBoxItem>
-                                    <ComboBoxItem>
-                                        V.I.P
-                                    </ComboBoxItem>
-
-                                </ComboBox>
-                            </Grid>
-                            <Grid Grid.Column="0">
-                                <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="5"
-                                            Width="140"
-                                            Content="Xuất Danh Sách"
-                                            ToolTip="Xuất danh sách" Click="Button_Click"></Button>
+                            <Grid Grid.Column="0" >
+                                <DVC:Chart Canvas.Top="10" Canvas.Left="10" Name="mcChart" Width="400" Height="250" Background="LightSteelBlue">
+                                    <DVC:Chart.Series>
+                                        <DVC:PieSeries Title="Biểu đồ tỉ lệ khách hàng Nam và Nữ" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+                                        </DVC:PieSeries>
+                                    </DVC:Chart.Series>
+                                </DVC:Chart>
 
                             </Grid>
-                            <Grid Grid.Column="0" Visibility="Hidden">
-                                <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="5"
-                                            Width="100"
-                                            Content="Lọc"
-                                            ToolTip="Resource name: MaterialDesignRaisedButton"></Button>
+                            <Grid Grid.Column="1" >
+                                <DVC:Chart ToolTip="Biểu đồ 5 khách hàng tích lũy nhiều nhất" Canvas.Top="80" Canvas.Left="10" Name="mcChartCl" Width="600" Height="250" Background="LightSteelBlue">
+                                    <DVC:Chart.Series>
+                                        <DVC:ColumnSeries  Title="Điểm tích lũy" IndependentValueBinding="{Binding Path=HoTen}" DependentValueBinding="{Binding Path=DiemTichLuy}"></DVC:ColumnSeries>
+                                    </DVC:Chart.Series>
+                                </DVC:Chart>
                             </Grid>
-                            <Grid Grid.Column="1">
-                                <Button Command="{Binding Refresh}"  Style="{StaticResource MaterialDesignRaisedButton}" Margin="5"
-                                            Width="100"
-                                            Content="Refresh"
-                                            ToolTip="Refresh" Background="#FF6CC521" ></Button>
+                            <Grid Grid.Column="2">
+
+                            </Grid>
+                            <Grid Grid.Column="3">
+                                
+                            </Grid>
+                            <Grid Grid.Column="4">
+                                                          
                             </Grid>
 
                         </Grid>
 
-                        <Grid Grid.Row="1" Background="#FF9E3200">
-                            
-                            <Label Content="DANH SÁCH KHÁCH HÀNG SIÊU THỊ VINMART TRÀ VINH" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" Foreground="#DDF7F5F5"></Label>
-                        </Grid>
-                        <Grid Grid.Row="2">
-                           
-                            <ListView ItemsSource="{Binding KhachHangList}">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Header="ID Khách Hàng" DisplayMemberBinding="{Binding MaKH}"></GridViewColumn>
-                                        <GridViewColumn Header="Tên Khách Hàng" DisplayMemberBinding="{Binding HoTen}"></GridViewColumn>
-                                        <GridViewColumn Header="Giới Tính" DisplayMemberBinding="{Binding GioiTinh}"></GridViewColumn>
-                                        <GridViewColumn Header="Năm Sinh" DisplayMemberBinding="{Binding NamSinh}"></GridViewColumn>
-                                        <GridViewColumn Header="CMND" DisplayMemberBinding="{Binding CMND}"></GridViewColumn>
-                                        <GridViewColumn Header="Điện Thoại" DisplayMemberBinding="{Binding SDT}"></GridViewColumn>
-                                        <GridViewColumn Header="Địa Chỉ" DisplayMemberBinding="{Binding DiaChi}"></GridViewColumn>
-                                        <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
-                                        <GridViewColumn Header="Điểm Lưu" DisplayMemberBinding="{Binding DiemLuu}"></GridViewColumn>
-
-                                        <GridViewColumn Header="Điểm Tích Lũy" DisplayMemberBinding="{Binding DiemTichLuy}"></GridViewColumn>
-                                        <GridViewColumn Header="Loại Khách Hàng" DisplayMemberBinding="{Binding LoaiKhachHang}"></GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-
-                        </Grid>
+                     
+                        
                     </Grid>
                 </materialDesign:Card>
 

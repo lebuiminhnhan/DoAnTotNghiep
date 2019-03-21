@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls.DataVisualization.Charting;
 using System.Windows.Input;
 
 namespace QuanLiKhachHang.ViewModel
@@ -21,6 +22,13 @@ namespace QuanLiKhachHang.ViewModel
         private int _SLGD;
         public int SLGD { get => _SLGD; set { _SLGD = value; OnPropertyChanged(); } }
 
+        private int _SLNam;
+        public int SLNam { get => _SLNam; set { _SLNam = value; OnPropertyChanged(); } }
+
+        private int _SLNu;
+        public int SLNu { get => _SLNu; set { _SLNu = value; OnPropertyChanged(); } }
+
+
         private int? _TongThu;
         public int? TongThu { get => _TongThu; set { _TongThu = value; OnPropertyChanged(); } }
 
@@ -32,6 +40,7 @@ namespace QuanLiKhachHang.ViewModel
         
        public ICommand SearchCommand { get; set; }
 
+        public FrameworkElement mcChart;
         // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
         {
@@ -66,6 +75,7 @@ namespace QuanLiKhachHang.ViewModel
             Refresh = new RelayCommand<object>((p) => { return true; }, (p) => { LoadDL(); });
 
             // MessageBox.Show(DataProvider.Ins.DB.tblKhachHang.Select(x => x.HoTen).First());
+           
         }
        
         public void LoadDL()
@@ -75,8 +85,11 @@ namespace QuanLiKhachHang.ViewModel
             SLGD = DataProvider.Ins.DB.tblGiaoDich.Count();
             Tam = KhachHangList.Count();
             TongThu = DataProvider.Ins.DB.tblGiaoDich.Sum(x => x.TienThanhToan);
+            SLNam = DataProvider.Ins.DB.tblKhachHang.Where(x => x.GioiTinh == "Nam").Count();
+            SLNu = DataProvider.Ins.DB.tblKhachHang.Where(x => x.GioiTinh == "Nữ").Count();
+
         }
-            
+
 
     }
 }

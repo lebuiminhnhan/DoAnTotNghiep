@@ -14,17 +14,48 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Office.Interop.Excel;
+using System.Windows.Controls.DataVisualization.Charting;
+using System.Collections.ObjectModel;
+
 namespace QuanLiKhachHang
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : System.Windows.Window
     {
+        private int _DiemTichLuy;
+        public int DiemTichLuy { get => _DiemTichLuy; set { _DiemTichLuy = value; } }
+
+        private int _HoTen;
+        public int HoTen { get => _HoTen; set { _HoTen = value; } }
+
+        private ObservableCollection<tblKhachHang> _KhachHangList;
+        public ObservableCollection<tblKhachHang> KhachHangList { get => _KhachHangList; set { _KhachHangList = value; } }
+
+
+
         public MainWindow()
         {
+            int SLNam = DataProvider.Ins.DB.tblKhachHang.Where(x => x.GioiTinh == "Nam").Count();
+            int SLNu = DataProvider.Ins.DB.tblKhachHang.Where(x => x.GioiTinh == "Nữ").Count();
+            KhachHangList = new ObservableCollection<tblKhachHang>(DataProvider.Ins.DB.tblKhachHang.OrderByDescending(x => x.DiemTichLuy).Take(5).ToList());
             InitializeComponent();
+
+            ((PieSeries)mcChart.Series[0]).ItemsSource = new KeyValuePair<string, int>[]
+            {
+                new KeyValuePair<string, int>("Nam", SLNam),
+                new KeyValuePair<string, int>("Nữ", SLNu),
+
+            };
+
+            ((ColumnSeries)mcChartCl.Series[0]).ItemsSource = KhachHangList;
+           
+        
         }
+
+       
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
