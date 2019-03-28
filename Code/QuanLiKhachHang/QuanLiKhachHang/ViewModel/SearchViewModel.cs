@@ -102,7 +102,7 @@ namespace QuanLiKhachHang.ViewModel
         void LoadDL()
         {
             var query = from g in DataProvider.Ins.DB.tblGiaoDich
-                        where g.MaKH == Key
+                        where g.MaKH == Key 
                         select new ListKHnew
                         {
                             MaGD = g.MaGD,
@@ -115,14 +115,14 @@ namespace QuanLiKhachHang.ViewModel
                         };
            
             var ud = from s in DataProvider.Ins.DB.tblCoUuDai
-                     where s.MaKH == Key
+                     where s.MaKH == Key 
                      select new ListTenUD
                      {
                          TUD  = s.tblUuDai.TenUD
                      };
             ListUD = new ObservableCollection<ListTenUD>(ud);
             List = new ObservableCollection<ListKHnew>(query);
-            KhachHangList = new ObservableCollection<tblKhachHang>(DataProvider.Ins.DB.tblKhachHang.Where(x => x.MaKH == Key));
+            KhachHangList = new ObservableCollection<tblKhachHang>(DataProvider.Ins.DB.tblKhachHang.Where(x => x.MaKH == Key && x.TrangThai == "Hoạt Động"));
         }
         
         public SearchViewModel()

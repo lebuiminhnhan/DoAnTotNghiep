@@ -49,7 +49,7 @@ xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;asse
 
             <!--menu-->
             <Grid Grid.Row="0">
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="Transparent">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}">
                     <Grid.Resources>
                         <Style TargetType="Button">
                             <Setter Property="Margin" Value="2 4 2 4"></Setter>
@@ -170,7 +170,7 @@ xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;asse
                             <Grid Grid.Row="1">
                                 <Separator Margin="5"></Separator>
                             </Grid>
-                            <Grid Grid.Row="2">
+                            <Grid Grid.Row="2" Background="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -328,41 +328,32 @@ xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;asse
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <Grid Grid.Row="0" Margin="5">
+                        <Grid Grid.Row="0" Margin="5" HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"></ColumnDefinition>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
-
+                                <ColumnDefinition></ColumnDefinition>
+                              
                             </Grid.ColumnDefinitions>
+                            <WrapPanel>
+                                <Grid Grid.Column="0" HorizontalAlignment="Center">
+                                    <DVC:Chart Canvas.Top="10" ToolTip="Biểu đồ tỉ lệ khách hàng siêu thị VinMart Trà Vinh" Canvas.Left="10" Name="mcChart" Width="580" Height="250" Background="LightSteelBlue" HorizontalAlignment="Right">
+                                        <DVC:Chart.Series>
+                                            <DVC:PieSeries Title="Biểu đồ tỉ lệ khách hàng Nam và Nữ" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}" HorizontalAlignment="Left" Margin="10,10,0,10" Width="538">
+                                            </DVC:PieSeries>
+                                        </DVC:Chart.Series>
+                                    </DVC:Chart>
 
-                            <Grid Grid.Column="0" >
-                                <DVC:Chart Canvas.Top="10" Canvas.Left="10" Name="mcChart" Width="400" Height="250" Background="LightSteelBlue">
-                                    <DVC:Chart.Series>
-                                        <DVC:PieSeries Title="Biểu đồ tỉ lệ khách hàng Nam và Nữ" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
-                                        </DVC:PieSeries>
-                                    </DVC:Chart.Series>
-                                </DVC:Chart>
-
-                            </Grid>
-                            <Grid Grid.Column="1" >
-                                <DVC:Chart ToolTip="Biểu đồ 5 khách hàng tích lũy nhiều nhất" Canvas.Top="80" Canvas.Left="10" Name="mcChartCl" Width="600" Height="250" Background="LightSteelBlue">
-                                    <DVC:Chart.Series>
-                                        <DVC:ColumnSeries  Title="Điểm tích lũy" IndependentValueBinding="{Binding Path=HoTen}" DependentValueBinding="{Binding Path=DiemTichLuy}"></DVC:ColumnSeries>
-                                    </DVC:Chart.Series>
-                                </DVC:Chart>
-                            </Grid>
-                            <Grid Grid.Column="2">
-
-                            </Grid>
-                            <Grid Grid.Column="3">
-                                
-                            </Grid>
-                            <Grid Grid.Column="4">
-                                                          
-                            </Grid>
+                                </Grid>
+                                <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto">
+                                    <DVC:Chart ToolTip="Biểu đồ 5 khách hàng tích lũy nhiều nhất" Canvas.Top="100" Canvas.Left="10" Name="mcChartCl" Width="680" Height="250" Background="LightSteelBlue" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                        <DVC:Chart.Series>
+                                            <DVC:ColumnSeries  Title="Điểm tích lũy" IndependentValueBinding="{Binding Path=HoTen}" DependentValueBinding="{Binding Path=DiemTichLuy}" HorizontalAlignment="Left" Width="511"></DVC:ColumnSeries>
+                                        </DVC:Chart.Series>
+                                    </DVC:Chart>
+                                </Grid>
+                            </WrapPanel>
+                          
+                            
 
                         </Grid>
 

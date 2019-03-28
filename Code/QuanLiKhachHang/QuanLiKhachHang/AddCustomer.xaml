@@ -55,6 +55,8 @@
 
                     <TextBox Text="{Binding CMND, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="CMND" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput" />
                     <TextBox Text="{Binding DiaChi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Text="{Binding NgheNghiep, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Nghề Nghiệp" PreviewTextInput="TextBox_PreviewTextInput_2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
                     <TextBox Text="{Binding SDT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Điện thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput_1" />
                     <TextBox Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <DatePicker VerticalAlignment="Center" SelectedDate="{Binding NamSinh, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Năm Sinh" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
@@ -66,6 +68,22 @@
                     <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
                     <Button Command="{Binding EditCommand}" Content="Sửa" Margin="5" Width="100"></Button>
                     <Button Command="{Binding EditCommand1}" Content="Xóa" Margin="5" Width="100"></Button>
+                    <TextBox
+                        Text="{Binding Key, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        Margin="10"
+  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="360"
+  >
+                        <materialDesign:HintAssist.Hint>
+                            <StackPanel
+      Orientation="Horizontal"
+      Margin="-2 0 0 0">
+                                <materialDesign:PackIcon
+        Kind="Search" />
+                                <TextBlock><Run Text="Tìm kiếm khách hàng"/></TextBlock>
+                            </StackPanel>
+                        </materialDesign:HintAssist.Hint>
+                    </TextBox>
+                    <Button Command="{Binding Scommand}" IsDefault="True" Content="Tìm" Margin="5" Width="100"></Button>
                 </WrapPanel>
             </materialDesign:Card>
 
@@ -79,10 +97,14 @@
                                 <GridViewColumn Header="Giới Tính" DisplayMemberBinding="{Binding GioiTinh}"></GridViewColumn>
                                 <GridViewColumn Header="Năm Sinh" DisplayMemberBinding="{Binding NamSinh}"></GridViewColumn>
                                 <GridViewColumn Header="CMND" DisplayMemberBinding="{Binding CMND}"></GridViewColumn>
+                                <GridViewColumn Header="Nghề Nghiệp" DisplayMemberBinding="{Binding NgheNghiep}"></GridViewColumn>
                                 <GridViewColumn Header="Điện Thoại" DisplayMemberBinding="{Binding SDT}"></GridViewColumn>
                                 <GridViewColumn Header="Địa Chỉ" DisplayMemberBinding="{Binding DiaChi}"></GridViewColumn>
                                 <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}"></GridViewColumn>
-                                
+                                <GridViewColumn Header="Loại Khách Hàng" DisplayMemberBinding="{Binding LoaiKhachHang}"></GridViewColumn>
+                                <GridViewColumn Header="Điểm Tích Luỹ" DisplayMemberBinding="{Binding DiemTichLuy}"></GridViewColumn>
+                                <GridViewColumn Header="Điểm Hiện Có" DisplayMemberBinding="{Binding DiemHienCo}"></GridViewColumn>
+
                             </GridView>
                         </ListView.View>
                     </ListView>

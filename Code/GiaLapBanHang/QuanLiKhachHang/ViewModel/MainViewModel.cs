@@ -300,9 +300,9 @@ namespace QuanLiKhachHang.ViewModel
 
             }, (p) =>
             {
-            try
-            {
-                var sp = DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(x => x.MaSP == SelectedItemSP.MaSP).FirstOrDefault();
+            //try
+            //{
+                var sp = DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(x => x.MaSP == MaSP && x.MaGD == MaGDSP).FirstOrDefault();
                 sp.MaSP = MaSP;
                     sp.SoLuong = SoLuong;
                     DonGia = DataProvider.Ins.DB.tblSanPham.Where(x => x.MaSP == sp.MaSP).Select(y => y.DonGia).FirstOrDefault();
@@ -325,13 +325,15 @@ namespace QuanLiKhachHang.ViewModel
 
                     LoadDL();
                     MessageBox.Show("Sửa sản phẩm vào giao dịch thành công!");
+                    ListGD = new ObservableCollection<tblSanPhamGiaoDich>(DataProvider.Ins.DB.tblSanPhamGiaoDich.OrderByDescending(x => x.MaGD).Where(y => y.MaGD == MaGDSP));
+                SelectedItemSP = null;
                     MaSP = 0;
                     SoLuong = 0;
-                }
-                catch
-                {
-                    MessageBox.Show("Đã xảy ra lỗi vui lòng thực hiện lại !");
-                }
+                //}
+                //catch
+                //{
+                //    MessageBox.Show("Đã xảy ra lỗi vui lòng thực hiện lại !");
+                //}
 
             });
 
@@ -348,7 +350,7 @@ namespace QuanLiKhachHang.ViewModel
 
             }, (p) =>
             {
-                var giaodich = DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(x => x.MaSP == SelectedItemSP.MaSP).FirstOrDefault();
+                var giaodich = DataProvider.Ins.DB.tblSanPhamGiaoDich.Where(x => x.MaSP == MaSP && x.MaGD == MaGDSP).FirstOrDefault();
                 DataProvider.Ins.DB.tblSanPhamGiaoDich.Remove(giaodich);
 
                 DataProvider.Ins.DB.SaveChanges();
@@ -361,9 +363,10 @@ namespace QuanLiKhachHang.ViewModel
                 gd.TienThanhToan = TienThanhToan;
                 DataProvider.Ins.DB.SaveChanges();
                 LoadDL();
-                ListGD = new ObservableCollection<tblSanPhamGiaoDich>(DataProvider.Ins.DB.tblSanPhamGiaoDich.OrderByDescending(x => x.MaGD).Where(y => y.MaGD == MaGDSP));
 
                 MessageBox.Show("Bỏ sản phẩm thành công!");
+                ListGD = new ObservableCollection<tblSanPhamGiaoDich>(DataProvider.Ins.DB.tblSanPhamGiaoDich.OrderByDescending(x => x.MaGD).Where(y => y.MaGD == MaGDSP));
+                SelectedItemSP = null;
                 MaSP = 0;
                 SoLuong = 0;
                 
@@ -466,22 +469,22 @@ namespace QuanLiKhachHang.ViewModel
                 ws.Range["C:C"].ColumnWidth = 10;
                 ws.Range["D:D"].ColumnWidth = 10;
                 ws.Range["E:E"].ColumnWidth = 10;
-                ws.Range["A3"].Value = "MaGD: ";
-                ws.Range["A1"].Value = "MaKH: ";
+                ws.Range["A3"].Value = "Mã GD: ";
+                ws.Range["A1"].Value = "Mã KH: ";
                 
-                ws.Range["C1"].Value = "MaNV: ";
-                ws.Range["A10"].Value = "Tien Chu: ";
-                ws.Range["A9"].Value = "Diem Tich Luy: ";
-                ws.Range["A5"].Value = "Diem Tru: ";
-                ws.Range["A6"].Value = "Tien Nhan Vao: ";
-                ws.Range["A7"].Value = "Tien Tra Lai: ";
-                ws.Range["A8"].Value = "Tien Thanh Toan: ";
-                ws.Range["A4"].Value = "Ngay Giao Dich: ";
-                ws.Range["A11"].Value = "MaSP: ";
-                ws.Range["B11"].Value = "TenSP: ";
-                ws.Range["C11"].Value = "Don Gia: ";
-                ws.Range["D11"].Value = "So Luong: ";
-                ws.Range["E11"].Value = "Tong: ";
+                ws.Range["C1"].Value = "Mã NV: ";
+                ws.Range["A10"].Value = "Tiền Chữ: ";
+                ws.Range["A9"].Value = "Điểm Tích Lũy: ";
+                ws.Range["A5"].Value = "Điểm Trừ: ";
+                ws.Range["A6"].Value = "Tiền Nhận Vào: ";
+                ws.Range["A7"].Value = "Tiền Trả Lại: ";
+                ws.Range["A8"].Value = "Tiền Thanh Toán: ";
+                ws.Range["A4"].Value = "Ngày Giao Dịch: ";
+                ws.Range["A11"].Value = "Mã SP: ";
+                ws.Range["B11"].Value = "Tên SP: ";
+                ws.Range["C11"].Value = "Đơn Giá: ";
+                ws.Range["D11"].Value = "Số Lượng: ";
+                ws.Range["E11"].Value = "Tổng: ";
 
                 var q = DataProvider.Ins.DB.tblGiaoDich.Where(x => x.MaGD == MaGD).FirstOrDefault();
                 ws.Range["B1"].Value = q.MaKH;

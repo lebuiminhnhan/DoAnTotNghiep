@@ -38,15 +38,15 @@ namespace QuanLiKhachHang
 
         public MainWindow()
         {
-            int SLNam = DataProvider.Ins.DB.tblKhachHang.Where(x => x.GioiTinh == "Nam").Count();
-            int SLNu = DataProvider.Ins.DB.tblKhachHang.Where(x => x.GioiTinh == "Nữ").Count();
-            KhachHangList = new ObservableCollection<tblKhachHang>(DataProvider.Ins.DB.tblKhachHang.OrderByDescending(x => x.DiemTichLuy).Take(5).ToList());
+            int SLTT = DataProvider.Ins.DB.tblKhachHang.Where(x => x.LoaiKhachHang == "Thân Thiết" && x.TrangThai == "Hoạt Động").Count();
+            int SLV = DataProvider.Ins.DB.tblKhachHang.Where(x => x.LoaiKhachHang == "VIP" && x.TrangThai == "Hoạt Động").Count();
+            KhachHangList = new ObservableCollection<tblKhachHang>(DataProvider.Ins.DB.tblKhachHang.OrderByDescending(x => x.DiemTichLuy).Where(z=>z.TrangThai=="Hoạt Động").Take(5).ToList());
             InitializeComponent();
 
             ((PieSeries)mcChart.Series[0]).ItemsSource = new KeyValuePair<string, int>[]
             {
-                new KeyValuePair<string, int>("Nam", SLNam),
-                new KeyValuePair<string, int>("Nữ", SLNu),
+                new KeyValuePair<string, int>("KH Thân Thiết", SLTT),
+                new KeyValuePair<string, int>("KH VIP", SLV),
 
             };
 

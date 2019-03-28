@@ -17,15 +17,7 @@
         Name="loginWindow"
      FontFamily="{DynamicResource MaterialDesignFont}"
         DataContext="{StaticResource LoginVM}"
-        Title="Đăng nhập" WindowStartupLocation="CenterScreen" Height="500" Width="400" Foreground="{x:Null}" MaxWidth="400" MaxHeight="500" ResizeMode="NoResize" Icon="user.png">
-    <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF181883" Offset="0"/>
-            <GradientStop Color="White" Offset="0.506"/>
-            <GradientStop Color="#FFF9F9F9" Offset="0.979"/>
-            <GradientStop Color="#FFF9F9F9" Offset="0.776"/>
-        </LinearGradientBrush>
-    </Window.Background>
+        Title="Đăng nhập" WindowStartupLocation="CenterScreen" Height="500" Width="400" Foreground="{x:Null}" MaxWidth="400" MaxHeight="500" ResizeMode="NoResize" Icon="user.png" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -37,7 +29,7 @@
         <Grid Grid.Row="0"  VerticalAlignment="Center">
             <Button
     Style="{DynamicResource MaterialDesignRaisedButton}"
-    materialDesign:ShadowAssist.ShadowDepth="Depth5">
+    materialDesign:ShadowAssist.ShadowDepth="Depth5" Background="#FFB73A3A" BorderBrush="#FFB73A3A">
                 Siêu thị VinMart Trà Vinh
             </Button>
         </Grid>

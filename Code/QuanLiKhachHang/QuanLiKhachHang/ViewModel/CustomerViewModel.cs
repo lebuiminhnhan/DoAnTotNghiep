@@ -27,12 +27,12 @@ namespace QuanLiKhachHang.ViewModel
                 if (SelectedItem != null)
                 {
                     MaKH = SelectedItem.MaKH;
-
+                    NgheNghiep = SelectedItem.NgheNghiep;
                     HoTen = SelectedItem.HoTen;
-                   GioiTinh= SelectedItem.GioiTinh;
-                   NamSinh= SelectedItem.NamSinh;
-                   SDT= SelectedItem.SDT;
-                   DiaChi= SelectedItem.DiaChi;
+                    GioiTinh= SelectedItem.GioiTinh;
+                    NamSinh= SelectedItem.NamSinh;
+                    SDT= SelectedItem.SDT;
+                    DiaChi= SelectedItem.DiaChi;
                     CMND = SelectedItem.CMND;
                     Email = SelectedItem.Email;
                 }
@@ -48,11 +48,17 @@ namespace QuanLiKhachHang.ViewModel
         private DateTime? _NamSinh;
         public DateTime? NamSinh { get => _NamSinh; set { _NamSinh = value; OnPropertyChanged(); } }
 
+        private DateTime? _NgayThamGia;
+        public DateTime? NgayThamGia { get => _NgayThamGia; set { _NgayThamGia = value; OnPropertyChanged(); } }
+
         private string _GioiTinh;
         public string GioiTinh { get => _GioiTinh; set { _GioiTinh = value; OnPropertyChanged(); } }
 
         private string _SDT;
         public string SDT { get => _SDT; set { _SDT = value; OnPropertyChanged(); } }
+
+        private string _NgheNghiep;
+        public string NgheNghiep { get => _NgheNghiep; set { _NgheNghiep = value; OnPropertyChanged(); } }
 
         private string _Email;
         public string Email { get => _Email; set { _Email = value; OnPropertyChanged(); } }
@@ -60,8 +66,8 @@ namespace QuanLiKhachHang.ViewModel
         private string _DiaChi;
         public string DiaChi { get => _DiaChi; set { _DiaChi = value; OnPropertyChanged(); } }
 
-        private string _LoaiKH;
-        public string LoaiKH { get => _LoaiKH; set { _LoaiKH = value; OnPropertyChanged(); } }
+        private string _LoaiKhachHang;
+        public string LoaiKhachHang { get => _LoaiKhachHang; set { _LoaiKhachHang = value; OnPropertyChanged(); } }
 
         private int _MaKH;
         public int MaKH { get => _MaKH; set { _MaKH = value; OnPropertyChanged(); } }
@@ -69,14 +75,16 @@ namespace QuanLiKhachHang.ViewModel
         private int _DiemTichLuy;
         public int DiemTichLuy { get => _DiemTichLuy; set { _DiemTichLuy = value; OnPropertyChanged(); } }
 
-        private int _DiemLuu;
-        public int DiemLuu { get => _DiemLuu; set { _DiemLuu = value; OnPropertyChanged(); } }
+        private int _DiemHienCo;
+        public int DiemHienCo { get => _DiemHienCo; set { _DiemHienCo = value; OnPropertyChanged(); } }
 
+        private string _Key;
+        public string Key { get => _Key; set { _Key = value; OnPropertyChanged(); } }
 
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand EditCommand1 { get; set; }
-
+        public ICommand Scommand { get; set; }
         private List<String> _property;
         public List<String> Property
         {
@@ -99,7 +107,32 @@ namespace QuanLiKhachHang.ViewModel
         public CustomerViewModel()
         {
             LoadDL();
+            Scommand = new RelayCommand<object>((p) =>
+            {
 
+                return true;
+
+            }, (p) =>
+            {
+
+                KhachHangList = new ObservableCollection<tblKhachHang>(DataProvider.Ins.DB.tblKhachHang.OrderByDescending(x => x.MaKH).Where(x => x.TrangThai != "Đã Xóa" && x.HoTen.Contains(Key)));
+
+
+
+
+                if (KhachHangList.Where(x=>x.HoTen.Contains(Key)).Count() != 0)
+                {
+                    KhachHangList = new ObservableCollection<tblKhachHang>(DataProvider.Ins.DB.tblKhachHang.OrderByDescending(x => x.MaKH).Where(x => x.TrangThai != "Đã Xóa" && x.HoTen.Contains(Key)));
+
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu");
+                    KhachHangList = new ObservableCollection<tblKhachHang>(DataProvider.Ins.DB.tblKhachHang.OrderByDescending(x => x.MaKH).Where(x => x.TrangThai != "Đã Xóa"));
+
+                }
+
+            });
             AddCommand = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(MaKH.ToString()))
@@ -119,12 +152,15 @@ namespace QuanLiKhachHang.ViewModel
                 khachHang.SDT = SDT;
                 khachHang.CMND = CMND;
                 khachHang.DiaChi = DiaChi;
+                khachHang.NgayThamGia = DateTime.Now;
                 khachHang.Email = Email;
                 khachHang.GioiTinh = GioiTinh;
+                khachHang.NgheNghiep = NgheNghiep;
+                
                 khachHang.TrangThai = "Hoạt Động";
                 khachHang.DiemHienCo = 0;
                 khachHang.DiemTichLuy = 0;
-                khachHang.LoaiKhachHang = "Thường";
+                khachHang.LoaiKhachHang = "Thân Thiết";
                 DataProvider.Ins.DB.tblKhachHang.Add(khachHang);
 
                 try
@@ -186,7 +222,7 @@ namespace QuanLiKhachHang.ViewModel
                 khachHang.DiaChi = DiaChi;
                 khachHang.Email = Email;
                 khachHang.GioiTinh = GioiTinh;
-
+                khachHang.NgheNghiep = NgheNghiep;
                 DataProvider.Ins.DB.SaveChanges();
                 
                 SelectedItem.MaKH = MaKH;
@@ -197,6 +233,7 @@ namespace QuanLiKhachHang.ViewModel
                 SelectedItem.DiaChi = DiaChi;
                 SelectedItem.Email = Email;
                 SelectedItem.CMND = CMND;
+                SelectedItem.NgheNghiep = NgheNghiep;
                 LoadDL();
                 MessageBox.Show("Sửa khách hàng thành công!");
                 SelectedItem = null;
@@ -236,6 +273,7 @@ namespace QuanLiKhachHang.ViewModel
                 SelectedItem.DiaChi = DiaChi;
                 SelectedItem.Email = Email;
                 SelectedItem.CMND = CMND;
+                SelectedItem.NgheNghiep = NgheNghiep;
                 LoadDL();
                 MessageBox.Show("Xóa khách hàng thành công!");
                 SelectedItem = null;
