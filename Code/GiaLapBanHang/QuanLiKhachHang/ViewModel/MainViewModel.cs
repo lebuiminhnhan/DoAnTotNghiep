@@ -447,15 +447,23 @@ namespace QuanLiKhachHang.ViewModel
                     giaodich.DiemTich = DiemTichHD;
                     giaodich.DiemTru = DiemTru;
                     giaodich.TienThem = TienTra;
-                int? TienQuiDoi = DiemTru * 1000;
-                int? TienTraLai = (TienQuiDoi + TienTra) - TienThanhToan;
-
-                giaodich.TienThanhToan = TienThanhToan;
+                    int? TienQuiDoi = DiemTru * 1000;
+                    int? TienTraLai = (TienQuiDoi + TienTra) - TienThanhToan;
+                    giaodich.TienThanhToan = TienThanhToan;
                     giaodich.TienGiam = TienTraLai;
                     DataProvider.Ins.DB.SaveChanges();
 
                     MessageBox.Show("Giao dịch hoàn tất, thối lại "+TienTraLai+" đồng");
+                // cập nhật loại khách hàng
+                int? tienGD = DataProvider.Ins.DB.tblLichSuGiaoDich.Where(x => x.MaKH == MaKH && x.tblGiaoDich.TrangThai != "Đã Xóa").Sum(y => y.TongTienGD);
+                if(tienGD >= 200000000)
+                {
+                    var kha = DataProvider.Ins.DB.tblKhachHang.Where(x => x.MaKH == MaKH).FirstOrDefault();
+                    kha.LoaiKhachHang = "VIP";
+                    DataProvider.Ins.DB.SaveChanges();
+                    MessageBox.Show("Xin chúc mừng khách hàng" + kha.HoTen + " đã được nâng cấp lên VIP!");
 
+                }
                 // xuất exel
 
                 Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();

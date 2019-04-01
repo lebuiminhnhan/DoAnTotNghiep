@@ -1,0 +1,122 @@
+﻿@model IEnumerable<WebKhachHang.Models.TblTaiKhoan>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VinID | Đăng nhập</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/LoginFile/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginFile/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginFile/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginFile/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginFile/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginFile/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginFile/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginFile/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/LoginFile/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('../LoginFile/images/img-01.jpg');">
+            <div class="wrap-login100 p-t-190 p-b-30">
+                <form class="login100-form validate-form">
+                    <div class="login100-form-avatar">
+                        <img src="~/LoginFile/images/avatar-01.jpg" alt="AVATAR">
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-10" data-validate="Username is required">
+                        <input class="input100" type="text" id="username" name="username" placeholder="Nhập tài khoản">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                        <input class="input100" type="password" id="password" name="password" placeholder="Nhập mật khẩu">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+
+                    <div class="container-login100-form-btn p-t-10">
+                        @*<button class="login100-form-btn" onclick="Validate()">
+            Đăng nhập
+        </button>*@
+                        <input type="button" value="Đăng Nhập" class="btn btn-dark" style="cursor:pointer; border-radius:50%;width:300px;height:60px" onclick="Validate()">
+                    </div>
+
+                    <div class="text-center w-full p-t-25 p-b-230">
+                        <h3 id="quen" class="txt1">
+                            Quên tài khoản/mật khẩu?
+                        </h3>
+                        <h3 id="tuvan" class="txt1" style="display: none; font-weight: 500">Gọi tổng đài hổ trợ trực tuyến: 1900 81 81</h3>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="~/LoginFile/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/LoginFile/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/LoginFile/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/LoginFile/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/LoginFile/js/main.js"></script>
+    <script>
+        $("#quen").click(function () {
+            $("#tuvan").show();
+            $("#quen").hide();
+        });
+    </script>
+    <script>
+  function Validate() {
+    $.ajax(
+    {
+      type: "POST",
+      url: '@Url.Action("Validate", "Login")',
+      data: {
+          TenDangNhap: $('#username').val(),
+          MatKhau: $('#password').val()
+      },
+      error: function (result) {
+        alert("There is a Problem, Try Again!");
+      },
+      success: function (result) {
+        console.log(result);
+        if (result.status == true) {
+          window.location.href = '@Url.Action("Index", "Home")';
+        }
+        else {
+          alert(result.message);
+        }
+      }
+    });
+  }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Thông tin cá nhân";
+}
+@using WebKhachHang.Models;
+@model WebKhachHang.Models.TblKhachHang;
+
+<section class="pricing_area section_gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main_title">
+                    <h2>Thông tin cá nhân</h2>
+                    <h1>Thông tin cá nhân</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="pricing_item">
+                    <h3 class="p_title">Khách hàng: @Model.LoaiKhachHang</h3>
+                    <h1 class="p_price">@Model.HoTen</h1>
+                    <h3 class="p_title">Điểm Tích Lũy: <span style="font-size:35px">@Model.DiemTichLuy </span> <span style="opacity:unset">.........................</span>  Điểm Khả Dụng: <span style="font-size:35px">@Model.DiemHienCo </span></h3>
+                    <div class="p_list">
+                        <ul>
+                            <li>Giới tính: @Model.GioiTinh</li>
+                            <li>Số CMND: @Model.Cmnd</li>
+                            <li>SĐT: @Model.Sdt</li>
+                            <li>Email: @Model.Email</li>
+                            <li>Địa Chỉ: @Model.DiaChi</li>
+                            <li>Ngày Tham Gia: @Model.NgayThamGia</li>
+                        </ul>
+                    </div>
+                    <div class="p_btn">
+                        <a class="btn btn-danger" asp-action="Edit" asp-route-id="@Model.MaKh"><span>Sửa thông tin</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

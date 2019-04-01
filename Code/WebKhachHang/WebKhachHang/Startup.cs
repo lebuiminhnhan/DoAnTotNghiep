@@ -59,7 +59,7 @@ namespace WebKhachHang
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=TblTaiKhoans}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

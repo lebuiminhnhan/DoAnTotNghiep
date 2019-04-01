@@ -1,17 +1,157 @@
-﻿@{
-    ViewData["Title"] = "Contact";
+﻿
+@{
+    Layout = null;
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <title>Nexus SaaS</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/HomeFile/css/bootstrap.css">
+    <link rel="stylesheet" href="~/HomeFile/vendors/linericon/style.css">
+    <link rel="stylesheet" href="~/HomeFile/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/HomeFile/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/HomeFile/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/HomeFile/vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="~/HomeFile/vendors/animate-css/animate.css">
+    <link rel="stylesheet" href="~/HomeFile/vendors/flaticon/flaticon.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="~/HomeFile/css/style.css">
+</head>
+<body>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <!--================Header Menu Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="index.html"><img src="~/HomeFile/img/logo.png" width="50" height="50" style="border-radius: 10px" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-center">
+                            <li class="nav-item active"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Profile">Thông tin cá nhân</a></li>
+                            <li class="nav-item"><a class="nav-link" href="gallery.html">Lịch sử giao dịch</a>
+
+
+                            <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Contact">Liên hệ</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item"><a href="#" class="primary_btn">Đăng nhập</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================Header Menu Area =================-->
+    <!--================Home Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+            <div class="container">
+                <div class="banner_content text-center">
+                    <div class="page_link">
+                        <a href="index.html">Trang chủ</a>
+                        <a href="contact.html">Liên hệ</a>
+                    </div>
+                    <h2>Liên hệ chúng tôi</h2>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+    <!--================Contact Area =================-->
+    <section class="contact_area section_gap">
+        <div class="container">
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1964.9873951151976!2d106.33376434955862!3d9.93605542258075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x972361d80ff7b890!2sVinMart+Tr%C3%A0+Vinh!5e0!3m2!1svi!2s!4v1553057113954" width="900" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>                <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact_info">
+                        <h3>HỖ TRỢ KHÁCH HÀNG</h3>
+                        Tổng đài CSKH (8h00-22h00 hàng ngày)<br>
+                        - Hotline KHTT: 1900 6959<br>
+                        - Hotline VIP: 1800 6599<br>
+                        - Với cuộc gọi từ nước ngoài: (+84)2473087999<br>
+                        - Email KHTT: cskh@vinid.net<br>
+                        - Email VIP: cskhvip@vinid.net
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h3>LIÊN HỆ</h3>
+                    Công ty Cổ phần VinID
+                    <br>
+                    Địa chỉ: Số 7, Đường Bằng Lăng 1, Khu đô thị Vinhomes Riverside, Phường Việt Hưng, Quận Long Biên, Hà Nội, Việt Nam.
+
+                    <br>
+                    Điện thoại: 024-39749999 <br>
+                    Mã số Doanh nghiệp: 0108372860 <br>
+                    Ngày cấp: 23/07/2018. Nơi cấp: Phòng Đăng ký Kinh Doanh – Thành phố Hà Nội <br>
+                    Email: cskh@vinid.net
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================Contact Area =================-->
+    <!--================Footer Area =================-->
+    <footer class="footer_area section_gap_top">
+        <div class="container">
+
+            <div class="row single-footer-widget">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="copy_right_text">
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> VinID
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="social_widget">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                        <a href="#"><i class="fa fa-behance"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/HomeFile/js/jquery-3.2.1.min.js"></script>
+    <script src="~/HomeFile/js/popper.js"></script>
+    <script src="~/HomeFile/js/bootstrap.min.js"></script>
+    <script src="~/HomeFile/js/stellar.js"></script>
+    <script src="~/HomeFile/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/HomeFile/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/HomeFile/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="~/HomeFile/vendors/isotope/isotope-min.js"></script>
+    <script src="~/HomeFile/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/HomeFile/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/HomeFile/vendors/counter-up/jquery.waypoints.min.js"></script>
+    <script src="~/HomeFile/vendors/counter-up/jquery.counterup.min.js"></script>
+    <script src="~/HomeFile/js/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="~/HomeFile/js/gmaps.min.js"></script>
+    <script src="~/HomeFile/js/theme.js"></script>
+</body>
+</html>

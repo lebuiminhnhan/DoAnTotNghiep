@@ -1,0 +1,141 @@
+﻿@model WebKhachHang.Models.TblKhachHang
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css" rel="stylesheet" />
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+
+   
+    <div class="container">
+        <div class="row">
+            <h4 class="p_price">Sửa thông tin khách hàng</h4>
+            <hr />
+            <div class="col-md-12">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="MaKh" />
+                    <div class="form-group">
+                        <label  class="control-label">Họ Tên</label>
+                        <input asp-for="HoTen" class="form-control" />
+                        <span asp-validation-for="HoTen" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">Năm Sinh</label>
+                        <input asp-for="NamSinh" class="form-control" />
+                        <span asp-validation-for="NamSinh" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">Giới Tính</label>
+                        <input asp-for="GioiTinh" class="form-control" />
+                        <span asp-validation-for="GioiTinh" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nghề Nghiệp</label>
+                        <input asp-for="NgheNghiep" class="form-control" />
+                        <span asp-validation-for="NgheNghiep" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">CMND</label>
+                        <input asp-for="Cmnd" class="form-control" />
+                        <span asp-validation-for="Cmnd" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">Số Điện Thoại</label>
+                        <input asp-for="Sdt" class="form-control" />
+                        <span asp-validation-for="Sdt" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">Địa Chỉ</label>
+                        <input asp-for="DiaChi" class="form-control" />
+                        <span asp-validation-for="DiaChi" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="display:none">
+                        <label asp-for="NgayThamGia" class="control-label"></label>
+                        <input asp-for="NgayThamGia" class="form-control" />
+                        <span asp-validation-for="NgayThamGia" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="display:none">
+                        <label asp-for="DiemTichLuy" class="control-label"></label>
+                        <input asp-for="DiemTichLuy" class="form-control" />
+                        <span asp-validation-for="DiemTichLuy" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="display:none">
+                        <label asp-for="DiemHienCo" class="control-label"></label>
+                        <input asp-for="DiemHienCo" class="form-control" />
+                        <span asp-validation-for="DiemHienCo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="display:none">
+                        <label asp-for="LoaiKhachHang" class="control-label"></label>
+                        <input asp-for="LoaiKhachHang" class="form-control" />
+                        <span asp-validation-for="LoaiKhachHang" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="display:none">
+                        <label asp-for="TrangThai" class="control-label"></label>
+                        <input asp-for="TrangThai" class="form-control" />
+                        <span asp-validation-for="TrangThai" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="display:none">
+                        <label asp-for="MaTk" class="control-label"></label>
+                        <select asp-for="MaTk" class="form-control" asp-items="ViewBag.MaTk"></select>
+                        <span asp-validation-for="MaTk" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Lưu thay đổi" class="btn btn-success" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            <a asp-action="Profile">Quay lại</a>
+        </div>
+    </div>
+
+    
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
+</body>
+</html>

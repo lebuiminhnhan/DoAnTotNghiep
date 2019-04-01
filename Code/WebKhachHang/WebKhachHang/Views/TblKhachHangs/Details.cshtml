@@ -1,0 +1,111 @@
+﻿@model WebKhachHang.Models.TblKhachHang
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+<div>
+    <h4>TblKhachHang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HoTen)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NamSinh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NamSinh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GioiTinh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NgheNghiep)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NgheNghiep)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cmnd)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cmnd)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sdt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sdt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayThamGia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NgayThamGia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemTichLuy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiemTichLuy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemHienCo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiemHienCo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiKhachHang)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LoaiKhachHang)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaTkNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaTkNavigation.MatKhau)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MaKh">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</body>
+</html>

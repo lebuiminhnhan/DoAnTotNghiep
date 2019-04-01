@@ -15,18 +15,18 @@ namespace WebKhachHang.Models
         {
         }
 
-        public virtual DbSet<TblCoUuDai> TblCoUuDai { get; set; }
-        public virtual DbSet<TblGiaoDich> TblGiaoDich { get; set; }
-        public virtual DbSet<TblKhachHang> TblKhachHang { get; set; }
-        public virtual DbSet<TblLichSuGiaoDich> TblLichSuGiaoDich { get; set; }
-        public virtual DbSet<TblLoaiSanPham> TblLoaiSanPham { get; set; }
-        public virtual DbSet<TblNhaCungCap> TblNhaCungCap { get; set; }
-        public virtual DbSet<TblNhanVien> TblNhanVien { get; set; }
-        public virtual DbSet<TblQuyen> TblQuyen { get; set; }
-        public virtual DbSet<TblSanPham> TblSanPham { get; set; }
-        public virtual DbSet<TblSanPhamGiaoDich> TblSanPhamGiaoDich { get; set; }
-        public virtual DbSet<TblTaiKhoan> TblTaiKhoan { get; set; }
-        public virtual DbSet<TblUuDai> TblUuDai { get; set; }
+        public  DbSet<TblCoUuDai> TblCoUuDai { get; set; }
+        public  DbSet<TblGiaoDich> TblGiaoDich { get; set; }
+        public  DbSet<TblKhachHang> TblKhachHang { get; set; }
+        public  DbSet<TblLichSuGiaoDich> TblLichSuGiaoDich { get; set; }
+        public  DbSet<TblLoaiSanPham> TblLoaiSanPham { get; set; }
+        public  DbSet<TblNhaCungCap> TblNhaCungCap { get; set; }
+        public  DbSet<TblNhanVien> TblNhanVien { get; set; }
+        public  DbSet<TblQuyen> TblQuyen { get; set; }
+        public  DbSet<TblSanPham> TblSanPham { get; set; }
+        public  DbSet<TblSanPhamGiaoDich> TblSanPhamGiaoDich { get; set; }
+        public  DbSet<TblTaiKhoan> TblTaiKhoan { get; set; }
+        public  DbSet<TblUuDai> TblUuDai { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
