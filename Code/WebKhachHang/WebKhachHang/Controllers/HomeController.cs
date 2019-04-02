@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,8 @@ namespace WebKhachHang.Controllers
     public class HomeController : Controller
     {
         private readonly VinMartv1Context _context;
-
+        const string SessionID = "_ID";
+        const string SessionName = "_Name";
         public HomeController(VinMartv1Context context)
         {
             _context = context;
@@ -21,18 +23,31 @@ namespace WebKhachHang.Controllers
 
         public IActionResult Index()
         {
+            string checkName = HttpContext.Session.GetString(SessionName);
+            ViewBag.Name = checkName;
             return View();
         }
 
-        public ActionResult Profile(int id)
+        public ActionResult Profile(int? id)
         {
-            var Chitiet = _context.TblKhachHang.Where(x => x.MaKh == 10000).FirstOrDefault();
-            
-            return View(Chitiet);
+            int? checkid = HttpContext.Session.GetInt32(SessionID);
+            string checkName = HttpContext.Session.GetString(SessionName);
+            if (checkid != null)
+            {
+                ViewBag.Name = checkName;
+                var Chitiet = _context.TblKhachHang.Where(x => x.MaKh == checkid).FirstOrDefault();
+                return View(Chitiet);
+            }
+            else
+            {
+                return Content("Bạn cần đăng nhập!");
+            }
+           
         }
         public IActionResult Contact()
         {
-
+            string checkName = HttpContext.Session.GetString(SessionName);
+            ViewBag.Name = checkName;
             return View();
         }
         public async Task<IActionResult> Edit(int? id)
@@ -54,7 +69,7 @@ namespace WebKhachHang.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MaKh,HoTen,NamSinh,GioiTinh,NgheNghiep,Cmnd,Sdt,Email,DiaChi")] TblKhachHang tblKhachHang)
+        public async Task<IActionResult> Edit(int id, [Bind("MaKh,HoTen,NamSinh,GioiTinh,NgheNghiep,Cmnd,Sdt,Email,DiaChi,LoaiKH,NgayThamGia,MaTk,DiemTichLuy,DiemHienCo,TrangThai,LoaiKhachHang")] TblKhachHang tblKhachHang)
         {
             if (id != tblKhachHang.MaKh)
             {
@@ -65,7 +80,7 @@ namespace WebKhachHang.Controllers
             {
                 try
                 {
-                    //_context.Update(tblKhachHang);
+                    _context.Update(tblKhachHang);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -89,10 +104,13 @@ namespace WebKhachHang.Controllers
             return _context.TblKhachHang.Any(e => e.MaKh == id);
         }
 
-        public IActionResult History()
+        public IActionResult History(int? id)
         {
-
-            return View();
+            int? checkid = HttpContext.Session.GetInt32(SessionID);
+            string checkName = HttpContext.Session.GetString(SessionName);
+            ViewBag.Name = checkName;
+            var ListGD = _context.TblGiaoDich.Where(x => x.MaKh == checkid).ToList();
+            return View(ListGD);
         }
 
        

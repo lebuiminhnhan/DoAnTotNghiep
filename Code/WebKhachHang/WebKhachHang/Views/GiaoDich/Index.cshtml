@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebKhachHang.Models.TblGiaoDich>
+
+@{
+    
+        ViewData["Title"] = "Lịch sử giao dịch";
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="frequently_area" style="margin-top:10em">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Lịch Sử Giao Dịch</h2> <br />
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Ngày Giao Dịch
+                            </th>
+                            <th>
+                                Tiền Thanh Toán
+                            </th>
+                            <th>
+                                Điểm Tích Lũy
+                            </th>
+                            <th>
+                                Điểm Trừ
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NgayGiaoDich)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TienThanhToan)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DiemTich)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DiemTru)
+                                </td>
+
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.MaGd">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.MaGd">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.MaGd">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    </section>
+

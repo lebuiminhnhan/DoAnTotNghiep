@@ -19,7 +19,7 @@
                 <div class="pricing_item">
                     <h3 class="p_title">Khách hàng: @Model.LoaiKhachHang</h3>
                     <h1 class="p_price">@Model.HoTen</h1>
-                    <h3 class="p_title">Điểm Tích Lũy: <span style="font-size:35px">@Model.DiemTichLuy </span> <span style="opacity:unset">.........................</span>  Điểm Khả Dụng: <span style="font-size:35px">@Model.DiemHienCo </span></h3>
+                    <h3 class="p_title">Điểm Tích Lũy:<abbr title="Là điểm tích được kể từ ngày mở thẻ!">(?)</abbr> <span style="font-size:35px"> @Model.DiemTichLuy </span> <span style="opacity:unset">.........................</span>  Điểm Khả Dụng:<abbr title="Là điểm tích dùng để trừ khi giao dịch, 1 điểm = 1000 đồng!">(?)</abbr><span style="font-size:35px"> @Model.DiemHienCo </span></h3>
                     <div class="p_list">
                         <ul>
                             <li>Giới tính: @Model.GioiTinh</li>
@@ -31,7 +31,7 @@
                         </ul>
                     </div>
                     <div class="p_btn">
-                        <a class="btn btn-danger" asp-action="Edit" asp-route-id="@Model.MaKh"><span>Sửa thông tin</span></a>
+                        <a class="link" style="color:white" asp-action="Edit" asp-route-id="@Model.MaKh"><span>Sửa thông tin</span></a>
                     </div>
                 </div>
             </div>

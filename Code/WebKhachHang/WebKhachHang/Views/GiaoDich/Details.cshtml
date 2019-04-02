@@ -1,0 +1,73 @@
+﻿@model WebKhachHang.Models.TblGiaoDich
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TblGiaoDich</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayGiaoDich)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NgayGiaoDich)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TienThanhToan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TienThanhToan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemTich)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiemTich)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TienGiam)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TienGiam)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemTru)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiemTru)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TienThem)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TienThem)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaKhNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaKhNavigation.MaKh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaNvNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaNvNavigation.MaNv)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MaGd">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

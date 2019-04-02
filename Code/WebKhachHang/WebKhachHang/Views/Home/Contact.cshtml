@@ -41,15 +41,16 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav justify-content-center">
-                            <li class="nav-item active"><a class="nav-link" href="index.html">Trang chủ</a></li>
-                            <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Profile">Thông tin cá nhân</a></li>
-                            <li class="nav-item"><a class="nav-link" href="gallery.html">Lịch sử giao dịch</a>
+                            <li class="nav-item active"><a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+
+                            <li id="profile" style="display:none" class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Profile">Thông tin cá nhân</a></li>
+                            <li id="history" style="display:none" class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="History">Lịch sử giao dịch</a>
 
 
                             <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Contact">Liên hệ</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="nav-item"><a href="#" class="primary_btn">Đăng nhập</a></li>
+                            <li id="loginbtn" style="display:none" class="nav-item"><a asp-controller="Login" asp-action="Index" class="primary_btn">Đăng nhập</a></li>
 
                         </ul>
                     </div>
@@ -80,6 +81,16 @@
         <div class="container">
 
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1964.9873951151976!2d106.33376434955862!3d9.93605542258075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x972361d80ff7b890!2sVinMart+Tr%C3%A0+Vinh!5e0!3m2!1svi!2s!4v1553057113954" width="900" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>                <div class="row">
+               
+            </div>
+        </div>
+    </section>
+    <!--================Contact Area =================-->
+    <!--================Footer Area =================-->
+    <footer class="footer_area section_gap_top">
+        <div class="container">
+
+            <div class="row single-footer-widget" style="color:white">
                 <div class="col-lg-6">
                     <div class="contact_info">
                         <h3>HỖ TRỢ KHÁCH HÀNG</h3>
@@ -103,33 +114,7 @@
                     Ngày cấp: 23/07/2018. Nơi cấp: Phòng Đăng ký Kinh Doanh – Thành phố Hà Nội <br>
                     Email: cskh@vinid.net
                 </div>
-            </div>
-        </div>
-    </section>
-    <!--================Contact Area =================-->
-    <!--================Footer Area =================-->
-    <footer class="footer_area section_gap_top">
-        <div class="container">
-
-            <div class="row single-footer-widget">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="copy_right_text">
-                        <p>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> VinID
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="social_widget">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </footer>

@@ -35,6 +35,11 @@ namespace WebKhachHang
             services.AddDbContext<Models.VinMartv1Context>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);//You can set Time   
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -44,6 +49,7 @@ namespace WebKhachHang
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //app.UseBrowserLink();
             }
             else
             {
@@ -54,12 +60,13 @@ namespace WebKhachHang
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

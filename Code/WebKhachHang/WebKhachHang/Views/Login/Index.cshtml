@@ -27,6 +27,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/LoginFile/css/util.css">
     <link rel="stylesheet" type="text/css" href="~/LoginFile/css/main.css">
+
     <!--===============================================================================================-->
 </head>
 <body>
@@ -57,8 +58,8 @@
 
                     <div class="container-login100-form-btn p-t-10">
                         @*<button class="login100-form-btn" onclick="Validate()">
-            Đăng nhập
-        </button>*@
+                                Đăng nhập
+                            </button>*@
                         <input type="button" value="Đăng Nhập" class="btn btn-dark" style="cursor:pointer; border-radius:50%;width:300px;height:60px" onclick="Validate()">
                     </div>
 
@@ -77,7 +78,7 @@
 
 
 
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!--===============================================================================================-->
     <script src="~/LoginFile/vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
@@ -104,15 +105,18 @@
           MatKhau: $('#password').val()
       },
       error: function (result) {
-        alert("There is a Problem, Try Again!");
+          swal("Ồ không!", "Đã xảy ra lỗi vui lòng thử lại", "error");
       },
       success: function (result) {
         console.log(result);
         if (result.status == true) {
-          window.location.href = '@Url.Action("Index", "Home")';
+            window.location.href = '@Url.Action("Index", "Home")';
+            swal("Xin chào!", result.message, "success");
+
+
         }
         else {
-          alert(result.message);
+            swal("ồ không!", result.message, "error");
         }
       }
     });
