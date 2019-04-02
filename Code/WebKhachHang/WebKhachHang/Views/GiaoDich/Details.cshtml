@@ -1,73 +1,74 @@
-﻿@model WebKhachHang.Models.TblGiaoDich
+﻿@model List<WebKhachHang.Models.TblSanPhamGiaoDich>
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi Tiết";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<section class="frequently_area" style="margin-top:10em">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Lịch Sử Giao Dịch</h2> <br />
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Tên Sản Phẩm
+                            </th>
+                            <th>
+                                Số Lượng
+                            </th>
+                            <th>
+                                Tổng Tiền
+                            </th>
+                            <th>
+                                Mô Tả Sản Phẩm
+                            </th>
+                            <th>
+                                Loại Sản Phẩm
+                            </th>
+                            <th>
+                                Nhà Cung Cấp Sản Phẩm
+                            </th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaSpNavigation.TenSp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SoLuong)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TongTien)
+                            </td>
 
-<div>
-    <h4>TblGiaoDich</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayGiaoDich)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NgayGiaoDich)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TienThanhToan)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TienThanhToan)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DiemTich)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DiemTich)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TienGiam)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TienGiam)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DiemTru)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DiemTru)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TienThem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TienThem)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThai)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TrangThai)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MaKhNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MaKhNavigation.MaKh)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MaNvNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MaNvNavigation.MaNv)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.MaGd">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaSpNavigation.MoTa)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaSpNavigation.MaLhNavigation.TenLoai)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaSpNavigation.MaNccNavigation.TenNcc)
+                            </td>
+                           
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <a asp-action="Index">Quay về</a>
+</section>
+
+
+
+

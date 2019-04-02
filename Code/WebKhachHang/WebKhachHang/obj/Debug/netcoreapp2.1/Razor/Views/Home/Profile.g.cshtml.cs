@@ -176,7 +176,7 @@ using WebKhachHang.Models;
             WriteLiteral("</li>\r\n                        </ul>\r\n                    </div>\r\n                    <div class=\"p_btn\">\r\n                        ");
             EndContext();
             BeginContext(1667, 111, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "88937761b8a047649f7df7a8a8d0da7d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "318eed4042af4d148841c6222531b36e", async() => {
                 BeginContext(1748, 26, true);
                 WriteLiteral("<span>Sửa thông tin</span>");
                 EndContext();

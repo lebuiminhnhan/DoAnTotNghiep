@@ -27,13 +27,9 @@ D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\WebKhachH
 D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\WebKhachHang.pdb
 D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\WebKhachHang.csproj.CopyComplete
 D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\Login\Index.g.cshtml.cs
-D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\Home\History.g.cshtml.cs
 D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\Home\Profile.g.cshtml.cs
 D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
 D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\Home\Edit.g.cshtml.cs
 D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\WebKhachHang.csprojAssemblyReference.cache
-D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\GiaoDich\Create.g.cshtml.cs
-D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\GiaoDich\Delete.g.cshtml.cs
 D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\GiaoDich\Details.g.cshtml.cs
-D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\GiaoDich\Edit.g.cshtml.cs
 D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\GiaoDich\Index.g.cshtml.cs
