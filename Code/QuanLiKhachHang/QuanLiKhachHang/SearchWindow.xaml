@@ -76,7 +76,7 @@
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <StackPanel >
-                                    <materialDesign:Chip
+                                    <materialDesign:Chip ToolTip="Họ và tên khách hàng"
                                  Content="{Binding Path=HoTen, Mode=OneWay}"
                                 Width="500"
                                 Margin="5"
@@ -87,9 +87,9 @@
                                          Kind="User"></materialDesign:PackIcon>
                                         </materialDesign:Chip.Icon>
                                     </materialDesign:Chip>
-                                    <materialDesign:Chip
+                                    <materialDesign:Chip ToolTip="Mã khách hàng"
                                 Margin="5"
-                                  Content="{Binding Path=MaKH, Mode=OneWay}"
+                                  Content="{Binding Path=MaKH, Mode=OneWay}" 
                                 Width="500"
                                  IconBackground="{DynamicResource PrimaryHueDarkBrush}"
                                  IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
@@ -98,7 +98,7 @@
                                          Kind="IdentificationCard"></materialDesign:PackIcon>
                                         </materialDesign:Chip.Icon>
                                     </materialDesign:Chip>
-                                    <materialDesign:Chip
+                                    <materialDesign:Chip ToolTip="Năm sinh"
                                  Content="{Binding Path=NamSinh, Mode=OneWay}"
                                 Width="500"
                                 Margin="5"
@@ -109,7 +109,7 @@
                                          Kind="DateRange"></materialDesign:PackIcon>
                                         </materialDesign:Chip.Icon>
                                     </materialDesign:Chip>
-                                    <materialDesign:Chip
+                                    <materialDesign:Chip ToolTip="Địa chỉ"
                                 Margin="5"
                                   Content="{Binding Path=DiaChi, Mode=OneWay}"
                                 Width="500"
@@ -120,7 +120,7 @@
                                          Kind="AddressMarker"></materialDesign:PackIcon>
                                         </materialDesign:Chip.Icon>
                                     </materialDesign:Chip>
-                                    <materialDesign:Chip
+                                    <materialDesign:Chip ToolTip="Số điện thoại"
                                  Content="{Binding Path=SDT, Mode=OneWay}"
                                 Width="500"
                                 Margin="5"
@@ -131,9 +131,44 @@
                                          Kind="Phone"></materialDesign:PackIcon>
                                         </materialDesign:Chip.Icon>
                                     </materialDesign:Chip>
-                                    <materialDesign:Chip
+                                    <materialDesign:Chip ToolTip="Email"
+                                 Content="{Binding Path=Email, Mode=OneWay}"
+                                Width="500"
+                                Margin="5"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <materialDesign:Chip.Icon>
+                                            <materialDesign:PackIcon
+                                         Kind="Email"></materialDesign:PackIcon>
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+                                    <materialDesign:Chip ToolTip="Ngày tham gia"
+                                 Content="{Binding Path=NgayThamGia, Mode=OneWay}"
+                                Width="500"
+                                Margin="5"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <materialDesign:Chip.Icon>
+                                            <materialDesign:PackIcon
+                                         Kind="DateRange"></materialDesign:PackIcon>
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+
+
+                                    <materialDesign:Chip ToolTip="Điểm tích lũy kể từ ngày mở thẻ"
                                 Margin="5"
                                   Content="{Binding Path=DiemTichLuy, Mode=OneWay,StringFormat=\{0\} điểm}"
+                                Width="500"
+                                 IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                 IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <materialDesign:Chip.Icon>
+                                            <materialDesign:PackIcon
+                                         Kind="TrolleyPlus"></materialDesign:PackIcon>
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+                                    <materialDesign:Chip ToolTip="Điểm hiện có dùng để giao dịch 1 điểm = 1000 đồng"
+                                Margin="5"
+                                  Content="{Binding Path=DiemHienCo, Mode=OneWay,StringFormat=\{0\} điểm}"
                                 Width="500"
                                  IconBackground="{DynamicResource PrimaryHueDarkBrush}"
                                  IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
@@ -143,7 +178,7 @@
                                         </materialDesign:Chip.Icon>
                                     </materialDesign:Chip>
 
-                                    <materialDesign:Chip
+                                    <materialDesign:Chip ToolTip="Loại khách hàng"
                                  Content="{Binding Path=LoaiKH, Mode=OneWay}"
                                 Width="500"
                                 Margin="5"
@@ -199,9 +234,11 @@
                                         <ListView ItemsSource="{Binding ListGD , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Width="552">
                                             <ListView.View>
                                                 <GridView>
-                                                    <GridViewColumn Header="Mã Giao Dịch" DisplayMemberBinding="{Binding MaGDS}"></GridViewColumn>
-                                                    <GridViewColumn Header="Sản phẩm" DisplayMemberBinding="{Binding TenSPs}"></GridViewColumn>
-                                                    <GridViewColumn Header="Số Lượng" DisplayMemberBinding="{Binding SL}"></GridViewColumn>
+                                                    <GridViewColumn Header="Mã Giao Dịch" DisplayMemberBinding="{Binding MaGDSP}"></GridViewColumn>
+                                                    <GridViewColumn Header="Sản phẩm" DisplayMemberBinding="{Binding TenSP}"></GridViewColumn>
+                                                    <GridViewColumn Header="Số Lượng" DisplayMemberBinding="{Binding SoLuong}"></GridViewColumn>
+                                                    <GridViewColumn Header="Tổng Tiền" DisplayMemberBinding="{Binding TongTien}"></GridViewColumn>
+
                                                 </GridView>
                                             </ListView.View>
                                         </ListView>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,8 @@ namespace WebKhachHang.Controllers
     public class GiaoDichController : Controller
     {
         private readonly VinMartv1Context _context;
-
+        const string SessionID = "_ID";
+        const string SessionName = "_Name";
         public GiaoDichController(VinMartv1Context context)
         {
             _context = context;
@@ -21,7 +23,10 @@ namespace WebKhachHang.Controllers
         // GET: GiaoDich
         public async Task<IActionResult> Index()
         {
-            var vinMartv1Context = _context.TblGiaoDich.Include(t => t.MaKhNavigation).Include(t => t.MaNvNavigation);
+            int? checkid = HttpContext.Session.GetInt32(SessionID);
+            string checkName = HttpContext.Session.GetString(SessionName);
+            ViewBag.Name = checkName;
+            var vinMartv1Context = _context.TblGiaoDich.Where(x=>x.MaKh==checkid).Include(t => t.MaKhNavigation).Include(t => t.MaNvNavigation);
             return View(await vinMartv1Context.ToListAsync());
         }
 
@@ -33,19 +38,20 @@ namespace WebKhachHang.Controllers
                 return NotFound();
             }
 
-            var Spgd = from a in _context.TblSanPhamGiaoDich
+            var Spgd = (from a in _context.TblSanPhamGiaoDich
+                       join s in _context.TblSanPham on a.MaSp equals s.MaSp
                        where a.MaGd == id
-                       select new
+                       select new ListSP
                        {
-                           TenSP = a.MaSpNavigation.TenSp,
+                           TenSP = s.TenSp,
                            SL = a.SoLuong,
                            TT = a.TongTien,
-                           Mota = a.MaSpNavigation.MoTa,
-                           Loai = a.MaSpNavigation.MaLhNavigation.TenLoai,
-                           ncc = a.MaSpNavigation.MaNccNavigation.TenNcc
-                       };
+                           Mota = s.MoTa,
+                           Loai = s.MaLhNavigation.TenLoai,
+                           ncc = s.MaNccNavigation.TenNcc
+                       }).ToList();
             var sp = _context.TblSanPhamGiaoDich.ToList();
-            return View(sp);
+            return View(Spgd);
         }
 
    
@@ -54,5 +60,15 @@ namespace WebKhachHang.Controllers
         {
             return _context.TblGiaoDich.Any(e => e.MaGd == id);
         }
+    }
+
+    public class ListSP
+    {
+        public string TenSP { get; set; }
+        public int? SL { get; set; }
+        public int? TT { get; set; }
+        public string Mota { get; set; }
+        public string Loai { get; set; }
+        public string ncc { get; set; }
     }
 }

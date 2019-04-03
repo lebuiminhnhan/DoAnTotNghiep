@@ -42,8 +42,8 @@ namespace QuanLiKhachHang.Model
         public virtual ICollection<tblCoUuDai> tblCoUuDai { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblGiaoDich> tblGiaoDich { get; set; }
-        public virtual tblTaiKhoan tblTaiKhoan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblLichSuGiaoDich> tblLichSuGiaoDich { get; set; }
+        public virtual tblTaiKhoan tblTaiKhoan { get; set; }
     }
 }

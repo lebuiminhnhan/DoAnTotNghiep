@@ -146,6 +146,14 @@ namespace QuanLiKhachHang.ViewModel
 
             }, (p) =>
             {
+                tblTaiKhoan tk = new tblTaiKhoan();
+                tk.TenDangNhap = SDT;
+                tk.MatKhau = CMND;
+                tk.MaQuyen = 2;
+               
+                DataProvider.Ins.DB.tblTaiKhoan.Add(tk);
+                DataProvider.Ins.DB.SaveChanges();
+                int matk = DataProvider.Ins.DB.tblTaiKhoan.OrderByDescending(x=>x.MaTK).Select(y=>y.MaTK).Take(1).FirstOrDefault();
                 var khachHang = new tblKhachHang();
                 khachHang.HoTen = HoTen;
                 khachHang.NamSinh = NamSinh;
@@ -161,7 +169,14 @@ namespace QuanLiKhachHang.ViewModel
                 khachHang.DiemHienCo = 0;
                 khachHang.DiemTichLuy = 0;
                 khachHang.LoaiKhachHang = "Thân Thiết";
+                khachHang.MaTK = matk;
+               
+
+
+
                 DataProvider.Ins.DB.tblKhachHang.Add(khachHang);
+                              
+                
 
                 try
                 {
@@ -186,6 +201,7 @@ namespace QuanLiKhachHang.ViewModel
                     throw raise;
                     
                 }
+                
 
 
                 LoadDL();

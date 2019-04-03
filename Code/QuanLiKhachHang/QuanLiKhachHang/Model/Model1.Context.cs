@@ -35,7 +35,7 @@ namespace QuanLiKhachHang.Model
         public virtual DbSet<tblQuyen> tblQuyen { get; set; }
         public virtual DbSet<tblSanPham> tblSanPham { get; set; }
         public virtual DbSet<tblSanPhamGiaoDich> tblSanPhamGiaoDich { get; set; }
-        public virtual DbSet<tblTaiKhoan> tblTaiKhoan { get; set; }
         public virtual DbSet<tblUuDai> tblUuDai { get; set; }
+        public virtual DbSet<tblTaiKhoan> tblTaiKhoan { get; set; }
     }
 }

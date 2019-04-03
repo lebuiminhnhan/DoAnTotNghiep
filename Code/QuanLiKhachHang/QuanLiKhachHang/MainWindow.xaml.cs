@@ -16,6 +16,8 @@ using System.Windows.Shapes;
 using Microsoft.Office.Interop.Excel;
 using System.Windows.Controls.DataVisualization.Charting;
 using System.Collections.ObjectModel;
+using IronBarCode;
+using System.Diagnostics;
 
 namespace QuanLiKhachHang
 {
@@ -103,6 +105,20 @@ namespace QuanLiKhachHang
             Random n = new Random();
             int so = n.Next(9999);
             wb.SaveAs("D:\\ds"+so+".xlsx");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            // Generate a Simple BarCode image and save as PDF
+            QRCodeWriter.CreateQrCode("MaSo:10000 - KH:Le Bui Minh Nhan", 200, QRCodeWriter.QrErrorCorrectionLevel.Medium).SaveAsPdf("D:\\MyQR.pdf");
+            Process p = new Process();
+            p.StartInfo = new ProcessStartInfo()
+            {
+                CreateNoWindow = true,
+                Verb = "print",
+                FileName = "D:\\MyQR.pdf" 
+            };
+            p.Start();
         }
     }
 }

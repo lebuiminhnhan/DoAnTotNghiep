@@ -121,16 +121,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tblTaiKhoan">
-      <EntityTypeMapping TypeName="VinMartv1Model.tblTaiKhoan">
-        <MappingFragment StoreEntitySet="tblTaiKhoan">
-          <ScalarProperty Name="MaTK" ColumnName="MaTK" />
-          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
-          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
-          <ScalarProperty Name="MaQuyen" ColumnName="MaQuyen" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tblUuDai">
       <EntityTypeMapping TypeName="VinMartv1Model.tblUuDai">
         <MappingFragment StoreEntitySet="tblUuDai">
@@ -139,6 +129,16 @@
           <ScalarProperty Name="ThoiGianBD" ColumnName="ThoiGianBD" />
           <ScalarProperty Name="ThoiGianKT" ColumnName="ThoiGianKT" />
           <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTaiKhoan">
+      <EntityTypeMapping TypeName="VinMartv1Model.tblTaiKhoan">
+        <MappingFragment StoreEntitySet="tblTaiKhoan">
+          <ScalarProperty Name="MaQuyen" ColumnName="MaQuyen" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+          <ScalarProperty Name="MaTK" ColumnName="MaTK" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

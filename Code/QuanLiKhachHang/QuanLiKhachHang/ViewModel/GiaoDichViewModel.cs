@@ -38,7 +38,7 @@ namespace QuanLiKhachHang.ViewModel
                 OnPropertyChanged();
                 if (SelectedItem != null)
                 {
-                   
+                    MaGD = SelectedItem.MaGD;
                 }
             }
         }

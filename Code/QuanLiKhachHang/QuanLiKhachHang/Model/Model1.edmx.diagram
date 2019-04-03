@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="VinMartv1Model.tblQuyen" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="VinMartv1Model.tblSanPham" Width="1.5" PointX="7.5" PointY="15.25" IsExpanded="true" />
         <EntityTypeShape EntityType="VinMartv1Model.tblSanPhamGiaoDich" Width="1.5" PointX="9.75" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VinMartv1Model.tblTaiKhoan" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="VinMartv1Model.tblUuDai" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="VinMartv1Model.FK_tblCoUuDai_tblGiaoDich" ManuallyRouted="false" />
         <AssociationConnector Association="VinMartv1Model.FK_tblCoUuDai_tblKhachHang" ManuallyRouted="false" />
@@ -24,13 +23,14 @@
         <AssociationConnector Association="VinMartv1Model.FK_tblGiaoDich_tblNhanVien" ManuallyRouted="false" />
         <AssociationConnector Association="VinMartv1Model.FK_tblLichSuGiaoDich_tblGiaoDich" ManuallyRouted="false" />
         <AssociationConnector Association="VinMartv1Model.FK_tblSanPhamGiaoDich_tblGiaoDich" ManuallyRouted="false" />
-        <AssociationConnector Association="VinMartv1Model.FK_tblKhachHang_tblTaiKhoan" ManuallyRouted="false" />
         <AssociationConnector Association="VinMartv1Model.FK_tblLichSuGiaoDich_tblKhachHang" ManuallyRouted="false" />
         <AssociationConnector Association="VinMartv1Model.FK_tblSanPham_tblLoaiSanPham" ManuallyRouted="false" />
         <AssociationConnector Association="VinMartv1Model.FK_tblSanPham_tblNhaCungCap" ManuallyRouted="false" />
-        <AssociationConnector Association="VinMartv1Model.FK_tblNhanVien_tblTaiKhoan" ManuallyRouted="false" />
-        <AssociationConnector Association="VinMartv1Model.FK_tblTaiKhoan_tblQuyen" ManuallyRouted="false" />
         <AssociationConnector Association="VinMartv1Model.FK_tblSanPhamGiaoDich_tblSanPham" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="VinMartv1Model.tblTaiKhoan" Width="1.5" PointX="3" PointY="7.5" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblKhachHang_tblTaiKhoan" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblNhanVien_tblTaiKhoan" />
+        <AssociationConnector Association="VinMartv1Model.FK_tblTaiKhoan_tblQuyen" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

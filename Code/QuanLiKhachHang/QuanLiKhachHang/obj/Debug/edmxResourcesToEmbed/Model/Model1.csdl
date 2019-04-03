@@ -54,8 +54,8 @@
     <Property Name="MaTK" Type="Int32" />
     <NavigationProperty Name="tblCoUuDai" Relationship="Self.FK_tblCoUuDai_tblKhachHang" FromRole="tblKhachHang" ToRole="tblCoUuDai" />
     <NavigationProperty Name="tblGiaoDich" Relationship="Self.FK_tblGiaoDich_tblKhachHang" FromRole="tblKhachHang" ToRole="tblGiaoDich" />
-    <NavigationProperty Name="tblTaiKhoan" Relationship="Self.FK_tblKhachHang_tblTaiKhoan" FromRole="tblKhachHang" ToRole="tblTaiKhoan" />
     <NavigationProperty Name="tblLichSuGiaoDich" Relationship="Self.FK_tblLichSuGiaoDich_tblKhachHang" FromRole="tblKhachHang" ToRole="tblLichSuGiaoDich" />
+    <NavigationProperty Name="tblTaiKhoan" Relationship="VinMartv1Model.FK_tblKhachHang_tblTaiKhoan" FromRole="tblKhachHang" ToRole="tblTaiKhoan" />
   </EntityType>
   <EntityType Name="tblLichSuGiaoDich">
     <Key>
@@ -100,7 +100,7 @@
     <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="MaTK" Type="Int32" />
     <NavigationProperty Name="tblGiaoDich" Relationship="Self.FK_tblGiaoDich_tblNhanVien" FromRole="tblNhanVien" ToRole="tblGiaoDich" />
-    <NavigationProperty Name="tblTaiKhoan" Relationship="Self.FK_tblNhanVien_tblTaiKhoan" FromRole="tblNhanVien" ToRole="tblTaiKhoan" />
+    <NavigationProperty Name="tblTaiKhoan" Relationship="VinMartv1Model.FK_tblNhanVien_tblTaiKhoan" FromRole="tblNhanVien" ToRole="tblTaiKhoan" />
   </EntityType>
   <EntityType Name="tblQuyen">
     <Key>
@@ -108,7 +108,7 @@
     </Key>
     <Property Name="MaQuyen" Type="Int32" Nullable="false" />
     <Property Name="TenQuyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="tblTaiKhoan" Relationship="Self.FK_tblTaiKhoan_tblQuyen" FromRole="tblQuyen" ToRole="tblTaiKhoan" />
+    <NavigationProperty Name="tblTaiKhoan" Relationship="VinMartv1Model.FK_tblTaiKhoan_tblQuyen" FromRole="tblQuyen" ToRole="tblTaiKhoan" />
   </EntityType>
   <EntityType Name="tblSanPham">
     <Key>
@@ -136,18 +136,6 @@
     <Property Name="TongTien" Type="Int32" />
     <NavigationProperty Name="tblGiaoDich" Relationship="Self.FK_tblSanPhamGiaoDich_tblGiaoDich" FromRole="tblSanPhamGiaoDich" ToRole="tblGiaoDich" />
     <NavigationProperty Name="tblSanPham" Relationship="Self.FK_tblSanPhamGiaoDich_tblSanPham" FromRole="tblSanPhamGiaoDich" ToRole="tblSanPham" />
-  </EntityType>
-  <EntityType Name="tblTaiKhoan">
-    <Key>
-      <PropertyRef Name="MaTK" />
-    </Key>
-    <Property Name="MaTK" Type="Int32" Nullable="false" />
-    <Property Name="TenDangNhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="MaQuyen" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="tblKhachHang" Relationship="Self.FK_tblKhachHang_tblTaiKhoan" FromRole="tblTaiKhoan" ToRole="tblKhachHang" />
-    <NavigationProperty Name="tblNhanVien" Relationship="Self.FK_tblNhanVien_tblTaiKhoan" FromRole="tblTaiKhoan" ToRole="tblNhanVien" />
-    <NavigationProperty Name="tblQuyen" Relationship="Self.FK_tblTaiKhoan_tblQuyen" FromRole="tblTaiKhoan" ToRole="tblQuyen" />
   </EntityType>
   <EntityType Name="tblUuDai">
     <Key>
@@ -244,18 +232,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tblKhachHang_tblTaiKhoan">
-    <End Role="tblTaiKhoan" Type="Self.tblTaiKhoan" Multiplicity="0..1" />
-    <End Role="tblKhachHang" Type="Self.tblKhachHang" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblTaiKhoan">
-        <PropertyRef Name="MaTK" />
-      </Principal>
-      <Dependent Role="tblKhachHang">
-        <PropertyRef Name="MaTK" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_tblLichSuGiaoDich_tblKhachHang">
     <End Role="tblKhachHang" Type="Self.tblKhachHang" Multiplicity="0..1" />
     <End Role="tblLichSuGiaoDich" Type="Self.tblLichSuGiaoDich" Multiplicity="*" />
@@ -292,30 +268,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tblNhanVien_tblTaiKhoan">
-    <End Role="tblTaiKhoan" Type="Self.tblTaiKhoan" Multiplicity="0..1" />
-    <End Role="tblNhanVien" Type="Self.tblNhanVien" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblTaiKhoan">
-        <PropertyRef Name="MaTK" />
-      </Principal>
-      <Dependent Role="tblNhanVien">
-        <PropertyRef Name="MaTK" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tblTaiKhoan_tblQuyen">
-    <End Role="tblQuyen" Type="Self.tblQuyen" Multiplicity="1" />
-    <End Role="tblTaiKhoan" Type="Self.tblTaiKhoan" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblQuyen">
-        <PropertyRef Name="MaQuyen" />
-      </Principal>
-      <Dependent Role="tblTaiKhoan">
-        <PropertyRef Name="MaQuyen" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_tblSanPhamGiaoDich_tblSanPham">
     <End Role="tblSanPham" Type="Self.tblSanPham" Multiplicity="1" />
     <End Role="tblSanPhamGiaoDich" Type="Self.tblSanPhamGiaoDich" Multiplicity="*" />
@@ -339,7 +291,6 @@
     <EntitySet Name="tblQuyen" EntityType="Self.tblQuyen" />
     <EntitySet Name="tblSanPham" EntityType="Self.tblSanPham" />
     <EntitySet Name="tblSanPhamGiaoDich" EntityType="Self.tblSanPhamGiaoDich" />
-    <EntitySet Name="tblTaiKhoan" EntityType="Self.tblTaiKhoan" />
     <EntitySet Name="tblUuDai" EntityType="Self.tblUuDai" />
     <AssociationSet Name="FK_tblCoUuDai_tblGiaoDich" Association="Self.FK_tblCoUuDai_tblGiaoDich">
       <End Role="tblGiaoDich" EntitySet="tblGiaoDich" />
@@ -369,10 +320,6 @@
       <End Role="tblGiaoDich" EntitySet="tblGiaoDich" />
       <End Role="tblSanPhamGiaoDich" EntitySet="tblSanPhamGiaoDich" />
     </AssociationSet>
-    <AssociationSet Name="FK_tblKhachHang_tblTaiKhoan" Association="Self.FK_tblKhachHang_tblTaiKhoan">
-      <End Role="tblTaiKhoan" EntitySet="tblTaiKhoan" />
-      <End Role="tblKhachHang" EntitySet="tblKhachHang" />
-    </AssociationSet>
     <AssociationSet Name="FK_tblLichSuGiaoDich_tblKhachHang" Association="Self.FK_tblLichSuGiaoDich_tblKhachHang">
       <End Role="tblKhachHang" EntitySet="tblKhachHang" />
       <End Role="tblLichSuGiaoDich" EntitySet="tblLichSuGiaoDich" />
@@ -385,17 +332,70 @@
       <End Role="tblNhaCungCap" EntitySet="tblNhaCungCap" />
       <End Role="tblSanPham" EntitySet="tblSanPham" />
     </AssociationSet>
-    <AssociationSet Name="FK_tblNhanVien_tblTaiKhoan" Association="Self.FK_tblNhanVien_tblTaiKhoan">
-      <End Role="tblTaiKhoan" EntitySet="tblTaiKhoan" />
-      <End Role="tblNhanVien" EntitySet="tblNhanVien" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tblTaiKhoan_tblQuyen" Association="Self.FK_tblTaiKhoan_tblQuyen">
-      <End Role="tblQuyen" EntitySet="tblQuyen" />
-      <End Role="tblTaiKhoan" EntitySet="tblTaiKhoan" />
-    </AssociationSet>
     <AssociationSet Name="FK_tblSanPhamGiaoDich_tblSanPham" Association="Self.FK_tblSanPhamGiaoDich_tblSanPham">
       <End Role="tblSanPham" EntitySet="tblSanPham" />
       <End Role="tblSanPhamGiaoDich" EntitySet="tblSanPhamGiaoDich" />
     </AssociationSet>
+    <EntitySet Name="tblTaiKhoan" EntityType="VinMartv1Model.tblTaiKhoan" />
+    <AssociationSet Name="FK_tblKhachHang_tblTaiKhoan" Association="VinMartv1Model.FK_tblKhachHang_tblTaiKhoan">
+      <End Role="tblTaiKhoan" EntitySet="tblTaiKhoan" />
+      <End Role="tblKhachHang" EntitySet="tblKhachHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblNhanVien_tblTaiKhoan" Association="VinMartv1Model.FK_tblNhanVien_tblTaiKhoan">
+      <End Role="tblTaiKhoan" EntitySet="tblTaiKhoan" />
+      <End Role="tblNhanVien" EntitySet="tblNhanVien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTaiKhoan_tblQuyen" Association="VinMartv1Model.FK_tblTaiKhoan_tblQuyen">
+      <End Role="tblQuyen" EntitySet="tblQuyen" />
+      <End Role="tblTaiKhoan" EntitySet="tblTaiKhoan" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="tblTaiKhoan">
+    <Key>
+      <PropertyRef Name="MaTK" />
+    </Key>
+    <Property Name="MaTK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenDangNhap" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MatKhau" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaQuyen" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblKhachHang" Relationship="VinMartv1Model.FK_tblKhachHang_tblTaiKhoan" FromRole="tblTaiKhoan" ToRole="tblKhachHang" />
+    <NavigationProperty Name="tblNhanVien" Relationship="VinMartv1Model.FK_tblNhanVien_tblTaiKhoan" FromRole="tblTaiKhoan" ToRole="tblNhanVien" />
+    <NavigationProperty Name="tblQuyen" Relationship="VinMartv1Model.FK_tblTaiKhoan_tblQuyen" FromRole="tblTaiKhoan" ToRole="tblQuyen" />
+  </EntityType>
+  <Association Name="FK_tblKhachHang_tblTaiKhoan">
+    <End Type="VinMartv1Model.tblTaiKhoan" Role="tblTaiKhoan" Multiplicity="0..1" />
+    <End Type="VinMartv1Model.tblKhachHang" Role="tblKhachHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTaiKhoan">
+        <PropertyRef Name="MaTK" />
+      </Principal>
+      <Dependent Role="tblKhachHang">
+        <PropertyRef Name="MaTK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblNhanVien_tblTaiKhoan">
+    <End Type="VinMartv1Model.tblTaiKhoan" Role="tblTaiKhoan" Multiplicity="0..1" />
+    <End Type="VinMartv1Model.tblNhanVien" Role="tblNhanVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTaiKhoan">
+        <PropertyRef Name="MaTK" />
+      </Principal>
+      <Dependent Role="tblNhanVien">
+        <PropertyRef Name="MaTK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTaiKhoan_tblQuyen">
+    <End Type="VinMartv1Model.tblQuyen" Role="tblQuyen" Multiplicity="1" />
+    <End Type="VinMartv1Model.tblTaiKhoan" Role="tblTaiKhoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblQuyen">
+        <PropertyRef Name="MaQuyen" />
+      </Principal>
+      <Dependent Role="tblTaiKhoan">
+        <PropertyRef Name="MaQuyen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

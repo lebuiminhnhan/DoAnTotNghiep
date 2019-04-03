@@ -117,7 +117,7 @@
     <Key>
       <PropertyRef Name="MaTK" />
     </Key>
-    <Property Name="MaTK" Type="int" Nullable="false" />
+    <Property Name="MaTK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenDangNhap" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="MatKhau" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="MaQuyen" Type="int" Nullable="false" />

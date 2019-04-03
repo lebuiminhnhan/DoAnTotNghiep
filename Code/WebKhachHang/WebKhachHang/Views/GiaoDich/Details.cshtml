@@ -1,4 +1,4 @@
-﻿@model List<WebKhachHang.Models.TblSanPhamGiaoDich>
+﻿@model List<WebKhachHang.Controllers.ListSP>
 
 @{
     ViewData["Title"] = "Chi Tiết";
@@ -39,23 +39,23 @@
                         {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MaSpNavigation.TenSp)
+                                @Html.DisplayFor(modelItem => item.TenSP)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SoLuong)
+                                @Html.DisplayFor(modelItem => item.SL)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.TongTien)
+                                @Html.DisplayFor(modelItem => item.TT)
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.MaSpNavigation.MoTa)
+                                @Html.DisplayFor(modelItem => item.Mota)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MaSpNavigation.MaLhNavigation.TenLoai)
+                                @Html.DisplayFor(modelItem => item.Loai)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MaSpNavigation.MaNccNavigation.TenNcc)
+                                @Html.DisplayFor(modelItem => item.ncc)
                             </td>
                            
                         </tr>

@@ -58,12 +58,15 @@ namespace QuanLiKhachHang.ViewModel
         private int _DiemTich;
         public int DiemTich{ get => _DiemTich; set { _DiemTich = value; OnPropertyChanged(); } }
     
-        private int? _DiemLuu;
-        public int? DiemLuu { get => _DiemLuu; set { _DiemLuu = value; OnPropertyChanged(); } }
+        private int? _DiemHienCo;
+        public int? DiemHienCo { get => _DiemHienCo; set { _DiemHienCo = value; OnPropertyChanged(); } }
 
         private string _TenNV;
         public string TenNV { get => _TenNV; set { _TenNV = value; OnPropertyChanged(); } }
-
+        private string _TenSP;
+        public string TenSP { get => _TenSP; set { _TenSP = value; OnPropertyChanged(); } }
+        private int? _DiemLuu;
+        public int? DiemLuu { get => _DiemLuu; set { _DiemLuu = value; OnPropertyChanged(); } }
 
         private int _MaGD;
         public int MaGD { get => _MaGD; set { _MaGD = value; OnPropertyChanged(); } }
@@ -75,6 +78,9 @@ namespace QuanLiKhachHang.ViewModel
 
         private DateTime _NgayGiaoDich;
         public DateTime NgayGiaoDich { get => _NgayGiaoDich; set { _NgayGiaoDich = value; OnPropertyChanged(); } }
+
+        private DateTime? _NgayThamGia;
+        public DateTime? NgayThamGia { get => _NgayThamGia; set { _NgayThamGia = value; OnPropertyChanged(); } }
 
         private int _TienThanhToan;
         public int TienThanhToan { get => _TienThanhToan; set { _TienThanhToan = value; OnPropertyChanged(); } }
@@ -92,6 +98,34 @@ namespace QuanLiKhachHang.ViewModel
         private int _SoLuong;
         public int SoLuong { get => _SoLuong; set { _SoLuong = value; OnPropertyChanged(); } }
 
+        private ListKHnew _SelectedItem;
+        public ListKHnew SelectedItem
+        {
+            get => _SelectedItem;
+            set
+            {
+                _SelectedItem = value;
+                OnPropertyChanged();
+                if (SelectedItem != null)
+                {
+                    MaGD = SelectedItem.MaGD;
+
+                    var ListSP = from s in DataProvider.Ins.DB.tblSanPhamGiaoDich
+                                 where s.MaGD == MaGD
+                                 select new ListGDnew
+                                 {
+                                     MaGDSP = s.MaGD,
+                                     TenSP = s.tblSanPham.TenSP,
+                                     SoLuong = s.SoLuong,
+                                     TongTien = s.TongTien
+
+                                 };
+                    ListGD = new ObservableCollection<ListGDnew>(ListSP);
+
+
+                }
+            }
+        }
 
         private int _Key;
         public int Key { get => _Key; set { _Key = value; OnPropertyChanged(); } }
@@ -101,6 +135,7 @@ namespace QuanLiKhachHang.ViewModel
    
         void LoadDL()
         {
+            
             var query = from g in DataProvider.Ins.DB.tblGiaoDich
                         where g.MaKH == Key 
                         select new ListKHnew
@@ -120,17 +155,16 @@ namespace QuanLiKhachHang.ViewModel
                      {
                          TUD  = s.tblUuDai.TenUD
                      };
+            
             ListUD = new ObservableCollection<ListTenUD>(ud);
             List = new ObservableCollection<ListKHnew>(query);
             KhachHangList = new ObservableCollection<tblKhachHang>(DataProvider.Ins.DB.tblKhachHang.Where(x => x.MaKH == Key && x.TrangThai == "Hoạt Động"));
+           
         }
         
         public SearchViewModel()
         {
-          
-          
-
-           
+                    
 
             Scommand = new RelayCommand<object>((p) =>
             {
@@ -145,9 +179,26 @@ namespace QuanLiKhachHang.ViewModel
                 MaKH = group.Key,
                 Tien = group.Sum(y=>y.TongTienGD)
             }).ToList();
-                
-              
-                
+                if (SelectedItem != null)
+                {
+                    var ListSP = from s in DataProvider.Ins.DB.tblSanPhamGiaoDich
+                                 where s.MaGD == MaGD
+                                 select new ListGDnew
+                                 {
+                                     MaGDSP = s.MaGD,
+                                     TenSP = s.tblSanPham.TenSP,
+                                     SoLuong = s.SoLuong,
+                                     TongTien = s.TongTien
+
+                                 };
+                    ListGD = new ObservableCollection<ListGDnew>(ListSP);
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn giao dịch để xem chi tiết sản phẩm đã mua!");
+                }
+
+
                 if (KhachHangList.Count() != 0)
                 {
                     foreach(var i in KhachHangList)
@@ -159,6 +210,9 @@ namespace QuanLiKhachHang.ViewModel
                         DiaChi = i.DiaChi;
                         MaKH = i.MaKH;
                         DiemTichLuy = i.DiemTichLuy;
+                        DiemHienCo = i.DiemHienCo;
+                        Email = i.Email;
+                        NgayThamGia = i.NgayThamGia;
                       
                     }
                     foreach(var i in Tongtien)
@@ -168,8 +222,9 @@ namespace QuanLiKhachHang.ViewModel
                 }
                 else
                 {
-                    MessageBox.Show("Không có dữ liệu");
+                    MessageBox.Show("Không có dữ liệu khách hàng");
                 }
+              
 
             });
 
@@ -183,8 +238,9 @@ namespace QuanLiKhachHang.ViewModel
 
     public class ListGDnew
     {
-        public int MaGDS { get; set; }
-        public string TenSPs { get; set; }
-        public int SL { get; set; }
+        public int MaGDSP { get; set; }
+        public string TenSP { get; set; }
+        public int? SoLuong { get; set; }
+        public int? TongTien { get; set; }
     }
 }

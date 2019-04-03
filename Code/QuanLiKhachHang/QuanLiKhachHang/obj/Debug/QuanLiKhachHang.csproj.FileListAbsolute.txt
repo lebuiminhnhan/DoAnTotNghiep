@@ -202,3 +202,5 @@ D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\bin\Debug\System.Windows.Co
 D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
 D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
 D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\bin\Debug\WPFToolkit.dll
+D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\bin\Debug\IronBarCode.dll
+D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\bin\Debug\IronBarCode.xml
