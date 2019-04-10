@@ -140,7 +140,7 @@ using WebKhachHang.Models;
             WriteLiteral("\r\n                                </td>\r\n\r\n                                <td>\r\n                                   \r\n                                    ");
             EndContext();
             BeginContext(1952, 62, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "67f9a1a4b5a14d4598aa2cbdd2a929ea", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1e25a7bc4eb9411f951da588680ace1b", async() => {
                 BeginContext(2002, 8, true);
                 WriteLiteral("Chi Tiết");
                 EndContext();

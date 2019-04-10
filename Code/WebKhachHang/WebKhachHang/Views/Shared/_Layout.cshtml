@@ -46,7 +46,7 @@
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; font-size:10px">Xin chào! @ViewBag.Name</font></font></a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="single-blog.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Đổi mật khẩu</font></font></a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-controller="MatKhau" asp-action="Index"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Đổi mật khẩu</font></font></a></li>
                                     <li class="nav-item"><a class="nav-link" asp-controller="Login" asp-action="Index"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Đăng Xuất</font></font></a></li>
 
                                 </ul>
@@ -132,7 +132,6 @@
     <script src="~/HomeFile/js/jquery.ajaxchimp.min.js"></script>
     <script src="~/HomeFile/vendors/counter-up/jquery.waypoints.min.js"></script>
     <script src="~/HomeFile/vendors/counter-up/jquery.counterup.min.js"></script>
-    <script src="~/HomeFile/js/mail-script.js"></script>
    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <script>
     $(document).ready(function () {
@@ -140,10 +139,18 @@
         $("#profile").show();
         $("#history").show();
         $("#loginbtn").show();
-        $("#mytable").DataTable();
+
        });
       
    </script>
-   
+   <script>
+       $("#password, #confirm_password").on("keyup", function () {
+           if ($("#password").val() == $("#confirm_password").val()) {
+               $("#message").html("Ok!").css("color", "green");
+           } else
+               $("#message").html("Không khớp").css("color", "red");
+       });
+
+   </script>
 </body>
 </html>

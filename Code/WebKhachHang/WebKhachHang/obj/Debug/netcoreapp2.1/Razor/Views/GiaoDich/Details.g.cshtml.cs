@@ -182,7 +182,7 @@ using WebKhachHang.Models;
             WriteLiteral("                    </tbody>\r\n                </table>\r\n\r\n            </div>\r\n            ");
             EndContext();
             BeginContext(2603, 83, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c4dfc20b05b94fabb68a3816d331bb9c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f6410ca57959491e8aaf57162309a9e5", async() => {
                 BeginContext(2675, 7, true);
                 WriteLiteral("Quay về");
                 EndContext();

@@ -33,3 +33,5 @@ D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Vie
 D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\WebKhachHang.csprojAssemblyReference.cache
 D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\GiaoDich\Details.g.cshtml.cs
 D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\GiaoDich\Index.g.cshtml.cs
+D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\MatKhau\Edit.g.cshtml.cs
+D:\SaoLuuGithub\Code\WebKhachHang\WebKhachHang\obj\Debug\netcoreapp2.1\Razor\Views\MatKhau\Index.g.cshtml.cs
