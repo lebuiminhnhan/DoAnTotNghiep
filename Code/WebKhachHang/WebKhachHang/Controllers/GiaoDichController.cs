@@ -33,6 +33,8 @@ namespace WebKhachHang.Controllers
         // GET: GiaoDich/Details/5
         public IActionResult Details(int? id)
         {
+            string checkName = HttpContext.Session.GetString(SessionName);
+            ViewBag.Name = checkName;
             if (id == null)
             {
                 return NotFound();
@@ -46,6 +48,7 @@ namespace WebKhachHang.Controllers
                            TenSP = s.TenSp,
                            SL = a.SoLuong,
                            TT = a.TongTien,
+                           Gia = a.MaSpNavigation.DonGia,
                            Mota = s.MoTa,
                            Loai = s.MaLhNavigation.TenLoai,
                            ncc = s.MaNccNavigation.TenNcc
@@ -67,6 +70,7 @@ namespace WebKhachHang.Controllers
         public string TenSP { get; set; }
         public int? SL { get; set; }
         public int? TT { get; set; }
+        public int? Gia { get; set; }
         public string Mota { get; set; }
         public string Loai { get; set; }
         public string ncc { get; set; }

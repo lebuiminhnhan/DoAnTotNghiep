@@ -17,6 +17,9 @@
                                 Tên Sản Phẩm
                             </th>
                             <th>
+                                Giá Sản Phẩm
+                            </th>
+                            <th>
                                 Số Lượng
                             </th>
                             <th>
@@ -31,7 +34,7 @@
                             <th>
                                 Nhà Cung Cấp Sản Phẩm
                             </th>
-                          
+
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +43,9 @@
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.TenSP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gia)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.SL)
@@ -57,16 +63,17 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.ncc)
                             </td>
-                           
+
                         </tr>
                         }
                     </tbody>
                 </table>
 
             </div>
+            <a asp-action="Index" class="btn btn-default" style="margin-bottom:4em">Quay về</a>
         </div>
     </div>
-    <a asp-action="Index">Quay về</a>
+   
 </section>
 
 

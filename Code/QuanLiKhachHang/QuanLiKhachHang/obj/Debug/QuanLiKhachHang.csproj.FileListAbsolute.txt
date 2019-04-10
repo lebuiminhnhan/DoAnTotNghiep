@@ -191,7 +191,6 @@ D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\obj\Debug\QuanLiKhachHang.P
 D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\obj\Debug\QuanLiKhachHang.csproj.GenerateResource.cache
 D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\obj\Debug\QuanLiKhachHang.csproj.CoreCompileInputs.cache
 D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\obj\Debug\QuanLiKhachHang.csproj.CopyComplete
-D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\obj\Debug\QuanLiKhachHang.csprojAssemblyReference.cache
 D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\bin\Debug\LiveCharts.dll
 D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\bin\Debug\LiveCharts.Wpf.dll
 D:\SaoLuuGithub\Code\QuanLiKhachHang\QuanLiKhachHang\bin\Debug\LiveCharts.pdb

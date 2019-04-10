@@ -478,9 +478,9 @@ namespace QuanLiKhachHang.ViewModel
                 ws.Range["D:D"].ColumnWidth = 10;
                 ws.Range["E:E"].ColumnWidth = 10;
                 ws.Range["A3"].Value = "Mã GD: ";
-                ws.Range["A1"].Value = "Mã KH: ";
-                
-                ws.Range["C1"].Value = "Mã NV: ";
+                ws.Range["A2"].Value = "Mã KH: ";
+                ws.Range["B1"].Value = "Siêu thị VinMart Trà Vinh";
+                ws.Range["C2"].Value = "Mã NV: ";
                 ws.Range["A10"].Value = "Tiền Chữ: ";
                 ws.Range["A9"].Value = "Điểm Tích Lũy: ";
                 ws.Range["A5"].Value = "Điểm Trừ: ";
@@ -495,9 +495,9 @@ namespace QuanLiKhachHang.ViewModel
                 ws.Range["E11"].Value = "Tổng: ";
 
                 var q = DataProvider.Ins.DB.tblGiaoDich.Where(x => x.MaGD == MaGD).FirstOrDefault();
-                ws.Range["B1"].Value = q.MaKH;
+                ws.Range["B2"].Value = q.MaKH;
                 
-                ws.Range["D1"].Value = q.MaNV;
+                ws.Range["D2"].Value = q.MaNV;
                 
                 ws.Range["B3"].Value = q.MaGD;
                 ws.Range["B4"].Value = q.NgayGiaoDich;

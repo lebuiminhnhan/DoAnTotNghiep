@@ -20,7 +20,7 @@
         WindowStartupLocation="CenterScreen"
         x:Name="window"
          DataContext="{StaticResource GiaoDichVM}"
-        Title="Khách hàng" Height="500" Width="1200">
+        Title="Khách hàng" Height="300" Width="600">
     <Grid>
        
         <Grid.RowDefinitions>
@@ -32,126 +32,34 @@
         </Grid>
 
         <Grid Grid.Row="1" VerticalAlignment="Stretch">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="300"> </ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <!--các element binding từ selected item-->
-                <materialDesign:Card Grid.Row="0" Margin="5" VerticalAlignment="Stretch">
-                    <Grid>
-                        
-                            <WrapPanel Margin="0 0 0 10">
-                                <TextBox Text="{Binding MaGD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mã Giao Dịch" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput"  />
-                                <TextBox Text="{Binding MaKH, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mã Khách Hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput"  />
-                                <TextBox Text="{Binding MaNVGD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mã Nhân Viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput"  />
-
-                                <TextBox Text="{Binding TienThanhToan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tiền Thanh Toán" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput_1"  />
-                                <TextBox Text="{Binding TienGiam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tiền Giảm" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput_3"  />
-                                <TextBox Text="{Binding DiemTichLuy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Điểm Tích" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput_2"  />
-                                <TextBox Text="{Binding DiemTru, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Điểm Trừ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput_4" />
-                                <DatePicker VerticalAlignment="Center" SelectedDate="{Binding NgayGiaoDich, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="5 5 15 0" materialDesign:HintAssist.Hint="Ngày Giao Dịch" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-
-
-                            </WrapPanel>
-
-                        </Grid>
-                        
-                   
-                </materialDesign:Card>
-
-                <materialDesign:Card Grid.Row="1" Margin="5">
-                    <WrapPanel>
-                        <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
-                        <Button Command="{Binding EditCommand}" Content="Sửa" Margin="5" Width="100"></Button>
-                        <Button Command="{Binding DeleteCommand}" Content="Xóa" Margin="5" Width="100"></Button>
-
-
-                    </WrapPanel>
-                </materialDesign:Card>
-
-                <materialDesign:Card Grid.Row="2" Margin="5" >
-                    <Grid >
-                       
-                            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                <ListView ItemsSource="{Binding List , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Width="907">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn Header="Mã Giao Dịch" DisplayMemberBinding="{Binding MaGD}"></GridViewColumn>
-                                            <GridViewColumn Header="Khách Hàng" DisplayMemberBinding="{Binding TenKH}"></GridViewColumn>
-                                            <GridViewColumn Header="Nhân Viên" DisplayMemberBinding="{Binding TenNV}"></GridViewColumn>
-                                            <GridViewColumn Header="Tiền Thanh Toán" DisplayMemberBinding="{Binding TienThanhToan}"></GridViewColumn>
-                                            <GridViewColumn Header="Điểm Tích" DisplayMemberBinding="{Binding DiemTichLuy}"></GridViewColumn>
-                                            <GridViewColumn Header="Điểm Trừ" DisplayMemberBinding="{Binding DiemTru}"></GridViewColumn>
-                                            <GridViewColumn Header="Tiền Giảm" DisplayMemberBinding="{Binding TienGiam}"></GridViewColumn>
-                                            <GridViewColumn Header="Ngày Giao Dịch" DisplayMemberBinding="{Binding NgayGiaoDich}"></GridViewColumn>
-
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </ScrollViewer>
-
-                      
-                    </Grid>
-
-                </materialDesign:Card>
-            </Grid>
+           
+           
             <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
+               
+             
 
-                <!--các element binding từ selected item-->
-                <materialDesign:Card Grid.Row="0" Margin="5">
-                    <Grid>
-                        <WrapPanel Margin="0 0 0 10">
-                            <TextBox Text="{Binding MaGD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mã Giao Dịch" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput"  />
-                            <TextBox Text="{Binding MaSP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mã Sản Phẩm" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput"  />
-                            <TextBox Text="{Binding SoLuong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số Lượng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="TextBox_PreviewTextInput"  />
-
-                            
-
-                        </WrapPanel>
-                    </Grid>
-                </materialDesign:Card>
-
-                <materialDesign:Card Grid.Row="1" Margin="5">
-                    <WrapPanel>
-                        <Button Command="{Binding AddCommandSP}" Content="Thêm" Margin="5" Width="70"></Button>
-
+                <materialDesign:Card Grid.Row="1" Margin="10 50 10  5" Height="150">
+                    <WrapPanel Margin="20 30" VerticalAlignment="Stretch">
+                        <TextBox
+                        Text="{Binding Key, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        Margin="10"
+  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="360"
+  >
+                            <materialDesign:HintAssist.Hint>
+                                <StackPanel
+      Orientation="Horizontal"
+      Margin="-2 0 0 0">
+                                    <materialDesign:PackIcon
+        Kind="Search" />
+                                    <TextBlock><Run Text="Nhập số điện thoại khách hàng"/></TextBlock>
+                                </StackPanel>
+                            </materialDesign:HintAssist.Hint>
+                        </TextBox>
+                        <Button Command="{Binding PrintCommand}" IsDefault="True" Content="In mã thẻ" Margin="5" Width="100"></Button>
 
                     </WrapPanel>
                 </materialDesign:Card>
 
-                <materialDesign:Card Grid.Row="2" Margin="5">
-                    <Grid>
-                        
-                      
-                      
-                            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                <ListView ItemsSource="{Binding ListGD , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Width="552">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn Header="Mã Giao Dịch" DisplayMemberBinding="{Binding MaGD}"></GridViewColumn>
-                                            <GridViewColumn Header="Sản phẩm" DisplayMemberBinding="{Binding MaSP}"></GridViewColumn>
-                                            <GridViewColumn Header="Số Lượng" DisplayMemberBinding="{Binding SoLuong}"></GridViewColumn>
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </ScrollViewer>
-
-                        </Grid>
-                   
-
-                </materialDesign:Card>
             </Grid>
 
         </Grid>
